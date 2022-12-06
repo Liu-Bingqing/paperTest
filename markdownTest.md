@@ -5,6 +5,13 @@
 #### title 4
 ##### title 5
 ###### title 6
+
+## 首行缩进
+全角
+&emsp;&emsp;全角
+半角
+&ensp;&ensp;半角
+
 ## code
 ```python
 print("hello world")
