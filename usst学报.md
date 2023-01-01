@@ -53,10 +53,17 @@ fixed:
 [1] Ghatak, Subhankar, Rup, et al.GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J].Digital Signal Processing,2021,111,102988.
 [2] Tan Jia-wai, Ding Qi-chuan, Bai Zhong-yu.Optimal Estimation Method of 3-Dimensional Human Pose Based on Video Frame Coherent Information[J]. Robot,2021,43(01): 9-16.**中文**
 [2] 谭嘉崴,丁其川,白忠玉.基于视频帧连贯信息的3维人体姿势优化估计方法[J].机器人,2021,43(01):9-16.
-[3] [3] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169.**中文** -> LOBSTER算法
+[3] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169.**中文** -> LOBSTER算法
 [4] Xiaodong Zhao,Fanxing Hou, Jingfang Su, et al. An Alphapose-Based Pedestrian Fall Detection Algorithm[J]. Lecture Notes in Computer Science,2022, https://doi.org/10.1007/978-3-031-06794-5_52. —> Alphapose
 [5] Chuanwang Chang, Chuanyu Chang,Youying Lin. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. MULTIMEDIA TOOLS AND APPLICATIONS,2022,81: 11825–11843. -> CNN
 [6] Weiwen Hsu, JingMing Guo, Chienyu Chen,et al. Fall Detection with the Spatial-Temporal Correlation Encoded by a Sequence-to-Sequence Denoised GAN[J].Sensors,2022,22(11):4194. -> GAN
+**上理工学报格式**：
+[1] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
+[2] 谭嘉崴,丁其川,白忠玉.基于视频帧连贯信息的3维人体姿势优化估计方法[J].机器人,2021,43(01):9-16.
+[3] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169.
+[4] ZHAO X D, HOU F X, SU J F, et al. An Alphapose-Based Pedestrian Fall Detection Algorithm[J]. Lecture Notes in Computer Science,2022, https://doi.org/10.1007/978-3-031-06794-5_52.
+[5] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843.
+[6] HSU W W, GUO J M, CHEN C Y, et al. Fall Detection with the Spatial-Temporal Correlation Encoded by a Sequence-to-Sequence Denoised GAN[J]. Sensors, 2022,22(11):4194.
 ### 2 整体设计 [7-12]
 [7][原5] Sheng Mengxue, Hou Wanwan, Jiang Juchao. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J].Journal of Physics Conference Series,2020,1544(1):012112. -> 运动阴影
 [8][原6] Di Wu, Chuanjiong Zhang, Li Ji, et al. Forest fire recognition based on feature extraction from multiview images[J].Traitement du Signal,2021,38:775-783. -> HSV颜色空间
@@ -65,14 +72,29 @@ fixed:
 [10][原8] Pu Han, Tianqiang Huang, Bin Weng, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J].Sensors,2021,21(12):3953. -> 抖动噪声
 [11][原9]  Arnal, Josep, Luis Súcar.Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243. -> 高斯函数
 [12][原10] Weixing Wang, Limin Li, Fei Zhang.Crack image recognition on fracture mechanics cross valley edge detection by fractional differential with multi-scale analysis[J].SIViP,2022,DOI:10.1007/s11760-022-02202-6. -> 灰度化模型
+**上理工学报格式**
+[7] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
+[8] WU D, ZHANG C J, JI L, et al. Forest fire recognition based on feature extraction from multiview images[J]. Traitement du Signal,2021,38: 775-783.
+[9] 裴颂文,樊静,沈天马,顾春华.面向低剂量CT图像的多生成器对抗网络降噪模型的研究[J].小型微型计算机系统,2020,41(12):2582-2587.
+[10] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
+[11] ARNAL J, SUCAR L. Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243.https://doi.org/10.3390/app10010243.
+[12] WANG W X, LI L M, ZHANG F. Crack image recognition on fracture mechanics cross valley edge detection by fractional differential with multi-scale analysis[J].SIViP,2022,DOI:10.1007/s11760-022-02202-6.
 ### 3 本文算法 [13-15]
 [13][原12] Liang Zheng, Yi Yang, Qi Tian. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J].IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244.-> SIFT
 [14][原3] Chen Quan, Huang Jun, Xu Fang. Research on improved visual background extraction algorithm in indoor[J]. Journal of Chinese Computer Systems,2021,42(06):1250-1255.**中文** -> 经典帧差法
 [14]陈权,黄俊,徐访.改进视觉背景提取算法在室内的研究[J].小型微型计算机系统,2021,42(06):1250-1255. 
 [15][原13]Xing Jiangwa, Yang Pei, Qingge Letu.Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544. -> OTSU
+**上理工学报格式**
+[13] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244.
+[14] 陈权,黄俊,徐访.改进视觉背景提取算法在室内的研究[J].小型微型计算机系统,2021,42(06):1250-1255.
+[15] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.
 ### 4 实验 [16-19]
 [16][原14] Bogdan Kwolek, Michal Kepski. Human fall detection on embedded platform using depth maps and wireless accelerometer[J]. sComputer Methods and Programs in Biomedicine,2014,117(3):489-501. -> UR Fall Detection Dataset
 [17][原15] Wang, Yi, Jodoin, et al. CDnet 2014: An Expanded Change Detection Benchmark Dataset[C]//IEEE Conference on Computer Vision and Pattern Recogniti-on Workshops (CVPRW 2014),2014:393-400. -> CDnet 2014 
 [18] YANG Honghong, QU Shiru. Real-time vehicle detection and counting in complex traffic scenes using background subtraction model with low-rank decomposition[J]. IET intelligent transport systems,2018,12(1):75-85. -> 性能指标
 [19] Liu Jia, Gu Qiyao, Chen Dapeng, et al. VSLAM method based on object detection in dynamic environments[J]. Frontiers in Neurorobotics,2022,16, 10.3389/fnbot.2022.990453. ->GMM算法
-
+**上理工学报格式**
+[16] KWOLEK B, KEPSKI M. Human fall detection on embedded platform using depth maps and wireless accelerometer[J]. Computer Methods and Programs in Biomedicine,2014,117(3):489-501.
+[17] WANG Y, JODOIN P, PORIKLI F, et al. CDnet 2014: An Expanded Change Detection Benchmark Dataset[C]//IEEE Conference on Computer Vision and Pattern Recogniti-on Workshops (CVPRW 2014),2014:393-400.
+[18] YANG H H, QU S R. Real-time vehicle detection and counting in complex traffic scenes using background subtraction model with low-rank decomposition[J]. IET intelligent transport systems,2018,12(1):75-85.
+[19] LIU J, GU Q Y, CHENG D P, et al. VSLAM method based on object detection in dynamic environments[J]. Frontiers in Neurorobotics,2022,16,10.3389/fnbot.2022.990453.
