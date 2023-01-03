@@ -75,7 +75,7 @@ fixed:
 **上理工学报格式**
 [7] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
 [8] WU D, ZHANG C J, JI L, et al. Forest fire recognition based on feature extraction from multiview images[J]. Traitement du Signal,2021,38: 775-783.
-[9] 裴颂文,樊静,沈天马,顾春华.面向低剂量CT图像的多生成器对抗网络降噪模型的研究[J].小型微型计算机系统,2020,41(12):2582-2587.
+[9] 裴颂文,樊静,沈天马,顾春华.面向低剂量CT图像的多生成器对抗网络降噪模型的研究[J].小型微型计算机系统,2020,41(12):2582-2587.[删除]
 [10] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
 [11] ARNAL J, SUCAR L. Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243.https://doi.org/10.3390/app10010243.
 [12] WANG W X, LI L M, ZHANG F. Crack image recognition on fracture mechanics cross valley edge detection by fractional differential with multi-scale analysis[J].SIViP,2022,DOI:10.1007/s11760-022-02202-6.
