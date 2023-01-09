@@ -36,3 +36,328 @@ train output - test output - L1 distance metric(曼哈顿距离)/L2 distance met
 ## 神经网络
 ## 卷积神经网络
 ## 练习1 Assignment1
+# GNN
+python version 3.7.6
+torch version 1.8.1+cpu
+## 0-python工具包安装 - 不能直接使用pip install
+pip wheels 装依赖
+直接 pip install torch-geometric
+## 1-pytorch_geometric基本使用
+GNN(Graph Neural Networks)致力于解决不规则数据结果，其迭代更新主要基于图中每个节点及其邻居的信息
+```python
+# 画图
+%matplotlib inline
+import torch
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def visualize_graph(G, color):
+    plt.figure(figsize=(7,7))
+    plt.xticks([])
+    plt.yticks([])
+    nx.draw_networkx(G, pos=nx.spring_layout(G, seed=42), with_labels=False, node_color=color, cmap="Set2")
+    plt.show()
+    
+def visualize_embedding(h, color, epoch=None, loss=None):
+    plt.figure(figsize=(7,7))
+    plt.xticks([])
+    plt.yticks([])
+    h = h.detach().cpu().numpy()
+    plt.scatter(h[:, 0], h[:, 1], s=140, c=color, cmap="Set2")
+    if epoch is not None and loss is not None:
+        plt.xlabel(f'Epoch: {epoch}, Loss: {loss.item():.4f}', fontsize=16)
+    plt.show()
+```
+数据集 - KarateClub Dataset - States: nodes-34, edges-156, features-34, classes-4
+```python
+# 导入数据
+from torch_geometric.datasets import KarateClub
+
+datasets = KarateClub()
+print(f'Dataset:{datasets}:')
+print('=====================')
+print(f'Number of graphs: {len(datasets)}')
+print(f'Number of features: {datasets.num_features}')
+print(f'Number of classes: {datasets.num_classes}')
+
+data = datasets[0] # Get the first graph object
+print(data)
+```
+edge_index
+edge_index: 表示图的连结关系（start, end两个序列） node features: 每个点特征 node labels: 每个点的标签 train_mask: 点标签，有的node无标签（用来表示哪些节点要计算损失）
+```python
+edge_index = data.edge_index
+print(edge_index.t())
+
+# 节点可视化
+from torch_geometric.utils import to_networkx
+
+G = to_networkx(data, to_undirected=True)
+visualize_graph(G, color=data.y)
+```
+### GNN构建
+```python
+import torch
+from torch.nn import Linear
+from torch_geometric.nn import GCNConv
+
+class GCN(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        torch.manual_seed(1234)
+        # 三层卷积
+        self.conv1 = GCNConv(datasets.num_features, 4) # 只需要定义输入特征和输出特征即可
+        self.conv2 = GCNConv(4, 4)
+        self.conv3 = GCNConv(4, 2)
+        self.classifier = Linear(2, datasets.num_classes) # 全连接
+        
+    def forward(self, x, edge_index):
+        h = self.conv1(x, edge_index) # 输入特征与邻接矩阵（注意格式）
+        h = h.tanh()
+        h = self.conv2(h, edge_index)
+        h = h.tanh()
+        h = self.conv3(h , edge_index)
+        h = h.tanh()
+        
+        # 分类层
+        out = self.classifier(h)
+        
+        return out, h
+
+model = GCN()
+print(model) # 打印网络模型
+
+model = GCN()
+
+_, h = model(data.x, data.edge_index)
+print(f'Embedding shape: {list(h.shape)}')
+
+visualize_embedding(h, color=data.y) # 可视化
+```
+#### 训练
+```python
+# 训练模型(semi-supervised)
+import time
+
+model = GCN()
+criterion = torch.nn.CrossEntropyLoss() # Define Loss function
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01) # Define optimizer
+
+def train(data):
+    optimizer.zero_grad()
+    out, h = model(data.x, data.edge_index)
+    loss = criterion(out[data.train_mask], data.y[data.train_mask]) # semi-supervised：只关注有标签训练节点
+    loss.backward() # 反向传播
+    optimizer.step()
+    return loss, h
+
+for epoch in range(401):
+    loss, h = train(data)
+    if epoch % 10 == 0:
+        visualize_embedding(h, color=data.y, epoch=epoch, loss=loss)
+        time.sleep(0.3)
+
+
+# 可视化out
+# 训练模型(semi-supervised)
+import time
+
+model = GCN()
+criterion = torch.nn.CrossEntropyLoss() # Define Loss function
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01) # Define optimizer
+
+def train(data):
+    optimizer.zero_grad()
+    out, h = model(data.x, data.edge_index)
+    loss = criterion(out[data.train_mask], data.y[data.train_mask]) # semi-supervised：只关注有标签训练节点
+    loss.backward() # 反向传播
+    optimizer.step()
+    return out
+
+for epoch in range(401):
+    out = train(data)
+#     if epoch % 10 == 0:
+#         visualize_embedding(out, color=data.y, epoch=epoch, loss=loss)
+#         time.sleep(0.3)
+# #     if epoch % 100 == 0:
+# #         visualize_embedding(out, color=data.y, epoch=epoch, loss=loss)
+# #         time.sleep(0.3)
+visualize_embedding(out, color=data.y, epoch=epoch, loss=loss)
+```
+## 2-点分类任务
+### 可视化方法
+```python
+# 可视化
+%matplotlib inline
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+
+def visualize(h, color):
+    z = TSNE(n_components=2).fit_transform(h.detach().cpu().numpy())
+    
+    plt.figure(figsize=(10,10))
+    plt.xticks([])
+    plt.yticks([])
+    
+    plt.scatter(z[:, 0], z[:, 1], s=70,  c=color, cmap="Set2")
+    plt.show()
+```
+### Dataset - Cora
+- 该数据集是论文引用数据集，每个点有1433维向量；
+- 最终要对每个点进行7分类任务(每个类别只有20个点有标记)
+``` python
+# 数据
+from torch_geometric.datasets import Planetoid # 用于下载数据到本地
+from torch_geometric.transforms import NormalizeFeatures
+
+dataset = Planetoid(root='data/Planetoid', name='Cora', transform=NormalizeFeatures()) #transform预处理
+
+#打印数据信息
+print()
+print(f'Dataset: {dataset}: ')
+print('=====================')
+print(f'Number of graphs: {len(dataset)}')
+print(f'Number of features: {dataset.num_features}')
+print(f'Number of classes: {dataset.num_classes}')
+
+data = dataset[0] # Get the first graph object
+
+print()
+print(data)
+print('===============================')
+
+# Gether some statistics about the graph
+print(f'Number of nodes: {data.num_nodes}')
+print(f'Number of edges: {data.num_edges}')
+print(f'Average node degree: {data.num_edges / data.num_nodes:.2f}')
+print(f'Training node label rate: {int(data.train_mask.sum()) / data.num_nodes:.2f}')
+print(f'Has isolated nodes: {data.has_isolated_nodes()}')
+print(f'Has self-loops: {data.has_self_loops()}')
+print(f'Is undirected: {data.is_undirected()}')
+```
+### 对比实验
+使用torch的全连接层Linear和GNN的GCN模型进行对比实验
+#### 全连接层 Multi-layer Perception Network
+``` python
+# 构建模型
+import torch
+from torch.nn import Linear
+import torch.nn.functional as F
+
+class MLP(torch.nn.Module):
+    def __init__(self, hidden_channels):
+        super().__init__()
+        torch.manual_seed(12345)
+        self.lin1 = Linear(dataset.num_features, hidden_channels)
+        self.lin2 = Linear(hidden_channels, dataset.num_classes)
+        
+    def forward(self, x):
+        x = self.lin1(x)
+        x = x.relu()
+        x = F.dropout(x, p=0.5, training=self.training)
+        x = self.lin2(x)
+        return x
+
+model = MLP(hidden_channels=16)
+print(model) # 输出模型结构
+
+# 训练
+# 训练 - 注：只考虑有标签的点
+model = MLP(hidden_channels=16)
+criterion = torch.nn.CrossEntropyLoss() # Define Loss Function
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4) # Define Optimizer
+
+def train():
+    model.train()
+    optimizer.zero_grad() # 梯度初始化清零Clear gradients
+    out = model(data.x) # 执行单次向前Perform a single forward pass
+    # 注：只考虑有标签的点
+    loss = criterion(out[data.train_mask], data.y[data.train_mask]) # 仅基于训练节点计算损失Compute the loss solely based on the training nodes
+    loss.backward() # 导出梯度Derive gradients
+    optimizer.step() # 基于梯度更新参数Update parameters based on gradients
+    return loss
+
+def test():
+    model.eval()
+    out = model(data.x)
+    pred = out.argmax(dim=1) # 使用概率最高的类Use the class with highest probability
+    test_correct = pred[data.test_mask] == data.y[data.test_mask] # 对照实际情况标签进行检查Check against ground-truth labels
+    test_acc = int(test_correct.sum()) / int(data.test_mask.sum()) # 导出正确预测比Derive ratio of correct predictions
+    return test_acc
+
+for epoch in range(1, 201):
+    loss = train()
+    print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
+
+# 准确率计算 7分类
+test_acc = test()
+print(f'Test Accuracy: {test_acc:.4f}')
+```
+#### Graph Neural Network(GNN)
+```python
+# 构建模型
+from torch_geometric.nn import GCNConv
+
+class GCN(torch.nn.Module):
+    def __init__(self, hidden_channels):
+        super().__init__()
+        torch.manual_seed(12345)
+        self.conv1 = GCNConv(dataset.num_features, hidden_channels)
+        self.conv2 = GCNConv(hidden_channels, dataset.num_classes)
+        
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = x.relu()
+        x = F.dropout(x, p=0.5, training=self.training)
+        x = self.conv2(x, edge_index)
+        return x
+
+model = GCN(hidden_channels=16)
+print(model) # 输出模型结构
+
+# 可视化时由于输出7维向量，因此需要降维进行展示
+model = GCN(hidden_channels=16)
+model.eval()
+
+out = model(data.x, data.edge_index)
+visualize(out, color=data.y)
+
+# 训练
+# 训练GCN模型
+# 训练 - 注：只考虑有标签的点
+model = GCN(hidden_channels=16)
+criterion = torch.nn.CrossEntropyLoss() # Define Loss Function
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4) # Define Optimizer
+
+def train():
+    model.train()
+    optimizer.zero_grad() # 梯度初始化清零Clear gradients
+    out = model(data.x, data.edge_index) # 执行单次向前Perform a single forward pass
+    # 注：只考虑有标签的点
+    loss = criterion(out[data.train_mask], data.y[data.train_mask]) # 仅基于训练节点计算损失Compute the loss solely based on the training nodes
+    loss.backward() # 导出梯度Derive gradients
+    optimizer.step() # 基于梯度更新参数Update parameters based on gradients
+    return loss
+
+def test():
+    model.eval()
+    out = model(data.x, data.edge_index)
+    pred = out.argmax(dim=1) # 使用概率最高的类Use the class with highest probability
+    test_correct = pred[data.test_mask] == data.y[data.test_mask] # 对照实际情况标签进行检查Check against ground-truth labels
+    test_acc = int(test_correct.sum()) / int(data.test_mask.sum()) # 导出正确预测比Derive ratio of correct predictions
+    return test_acc
+
+for epoch in range(1, 101):
+    loss = train()
+    print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
+
+# 准确率计算
+test_acc = test()
+print(f'Test Accuracy: {test_acc:.4f}')
+
+# 可视化效果
+model.eval()
+
+out = model(data.x, data.edge_index)
+visualize(out, color=data.y)
+```
