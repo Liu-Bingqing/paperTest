@@ -361,3 +361,185 @@ model.eval()
 out = model(data.x, data.edge_index)
 visualize(out, color=data.y)
 ```
+# OpenCV
+## OpenCV with python
+Github Link: https://github.com/murtazahassan/Learn-OpenCV-in-3-hours
+B站：【3h精通Opencv-Python】https://www.bilibili.com/video/BV16K411W7x9?vd_source=cf518f0e157700ce8a169afae9bf19ea
+### 1-读取数据
+```python
+# 读取展示图片
+import cv2
+print('Package Imported')
+
+dataDir = 'Data/whdTest01.jpg'
+img = cv2.imread(dataDir)
+height, width = img.shape[0:2]
+img = cv2.resize(img, (int(width / 10), int(height / 10))) # 等比缩小
+
+cv2.imshow('Output', img)
+cv2.waitKey(0)
+
+# 保存图像
+cv.imwrite('Data/whdTest02.jpg', img)
+
+# 读取视频
+import cv2
+print('Package Imported')
+
+dataDir = 'Data/videoTest01.mp4'
+cap = cv2.VideoCapture(dataDir)
+while True:
+    success, img = cap.read()
+    cv2.imshow("Video", img)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cap.release()
+        cv2.destroyAllWindows() # 关闭所有窗口
+        break
+
+# 摄像机
+import cv2 as cv
+print('Package Imported')
+
+cap = cv.VideoCapture(0)
+cap.set(3, 640) # width
+cap.set(4, 480) # height
+cap.set(10, 100) # brighthness
+# cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, 640)
+# cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, 640)
+# cap.set(cv.CAP_PROP_BRIGHTNESS, 500)
+
+while True:
+    success, img = cap.read()
+    cv.imshow("Video", img)
+    if cv.waitKey(1) & 0xFF == ord('q'):
+        cap.release()
+        cv.destroyAllWindows()
+        break
+```
+### 2-图像基本处理
+灰度图像、模糊图像、图像边缘、图像膨胀、图像腐蚀functions
+```python
+# 灰度图像、模糊图像、图像边缘、图像膨胀、图像腐蚀functions
+import cv2 as cv
+import numpy as np
+print('Package Imported')
+
+dataDir = "Data/whdTest01.jpg"
+kernel = np.ones((2,2), np.uint8)
+
+img = cv.imread(dataDir)
+height, width = img.shape[0:2]
+img = cv2.resize(img, (int(width / 10), int(height / 10)))
+# Basic image processing functions
+imgGray = cv.cvtColor(img, cv2.COLOR_BGR2GRAY)# 灰度图像 Gray Image
+imgBlur = cv.GaussianBlur(imgGray, (7,7), 0) # 模糊图像 Blur Image
+imgCanny = cv.Canny(img,100,200) # 边缘图像 Canny Image
+imgDilation = cv.dilate(imgCanny, kernel, iterations=1) # 膨胀处理 Dilation Image 扩张
+imgEroded = cv.erode(imgDilation, kernel, iterations=10) # 腐蚀处理 Eroded Image
+
+# cv.imshow("Original Image", img)
+cv.imshow("Gray Image", imgGray)
+cv.imshow("Blur Image", imgBlur)
+cv.imshow("Canny Image", imgCanny)
+cv.imshow("Dilation Image", imgDilation)
+cv.imshow("Eroded Image", imgEroded)
+
+cv.waitKey(0)
+```
+### 3-图像大小及裁剪
+重置图像大小、裁剪图片
+```python
+import cv2 as cv
+print("Package Imported")
+
+dataDir = "Data/cljTest02.jpg"
+imgOri = cv.imread(dataDir)
+print(imgOri.shape) # 输出：height:750, width:474, channel: 3
+height, width = imgOri.shape[0:2]
+print(f'Orignal Image height: {height}, width: {width}')
+
+imgResize = cv.resize(imgOri, (int(width/2), int(height/2))) # (width, height)
+print(imgResize.shape)
+reHeight, reWidth = imgResize.shape[0:2]
+print(f'Resize Image height: {reHeight}, width: {reWidth}')
+
+# 裁剪 - 注：y从上到下，箭头朝下，x从左到右，箭头朝右
+imgCropped = imgOri[100:300, 0:200] # [y, x]: height, width 
+
+cv.imshow("Original Image", imgOri)
+# cv.imshow("Resize Image", imgResize)
+cv.imshow("Cropped Image", imgCropped)
+
+cv.waitKey(0)
+```
+### 4-画图
+画出矩形、线条、圆形、文本
+```python
+# 画出矩形、线条、圆形、文本
+import cv2 as cv
+import numpy as np
+print("Package Imported")
+
+# 0-black, channel=3时才能画出彩色图像
+imgCanvas = np.zeros((512,512,3), np.uint8) # 黑色底色画布 Canvas
+# print(imgCanvas)
+imgCanvas[100:200,200:400] = 255,255,0 # 0,0,0-black, 255,0,0-Blue, 0,255,0-Green, 0,0,255-red, 255,255,255-white
+# line
+cv.line(imgCanvas, (0,0), (300,300), (0,0,255), 3)
+cv.line(imgCanvas, (0,0), (imgCanvas.shape[1], imgCanvas.shape[0]), (255,0,0), 1)
+# rectangle 矩形
+cv.rectangle(imgCanvas, (0,0), (250, 300), (0,255,0), 3)
+cv.rectangle(imgCanvas, (0,0), (250, 300), (200,10,0), cv.FILLED)
+# circle 圆形
+cv.circle(imgCanvas, (400, 50), 30, (255,255,255), 3) # 30半径
+# cv.circle(imgCanvas, (400, 50), 30, (255,255,255), cv.FILLED) # 30半径
+# Text 文本
+cv.putText(imgCanvas, "OpenCV", (300,400), cv.FONT_HERSHEY_COMPLEX, 1, (0,0,100), 3)
+
+cv.imshow("Canvas Image", imgCanvas)
+
+cv.waitKey(0)
+```
+### 5-透视
+warp prespective
+翘曲透视。对图像进行透视变换。简单来说，就是有这么一副图像，它的拍摄视角不是从正面拍摄的，而是带有一定的角度，我们希望能得到从正面观察的视角
+```python
+import cv2 as cv
+import numpy as np
+print('Package Imported')
+
+dataDir = "Data/cards.jpg"
+imgOri = cv.imread(dataDir)
+width, height = 250, 350 # 所需图像大小
+
+# pts1 = np.float32([[111,219],[287,188],[154,482],[352,440]])
+# pts2 = np.float32([[0,0],[width,0],[0,height],[width,height]])
+# matrix = cv.getPerspectiveTransform(pts1,pts2)
+# result = cv.warpPerspective(imgOri, matrix, (width,height))
+
+# 找k
+pts1K = np.float32([[527,144],[772,192],[404,396],[677,457]])  #所需图像部分四个顶点的像素点坐标
+pts2K = np.float32([[0,0],[width,0],[0,height],[width,height]]) #定义对应的像素点坐标
+matrixK = cv.getPerspectiveTransform(pts1K, pts2K)  #使用getPerspectiveTransform()得到转换矩阵
+imgK = cv.warpPerspective(imgOri, matrixK, (width,height))  #使用warpPerspective()进行透视变换
+
+#找Q
+pts1_Q = np.float32([[63,325],[340,279],[89,634],[403,573]])
+pts2_Q = np.float32([[0,0],[width,0],[0,height],[width,height]])
+matrixQ = cv.getPerspectiveTransform(pts1_Q,pts2_Q)
+imgQ = cv.warpPerspective(imgOri,matrixQ,(width,height))
+
+#找J
+pts1_J = np.float32([[777,107],[1019,84],[842,359],[1117,332]])
+pts2_J = np.float32([[0,0],[width,0],[0,height],[width,height]])
+matrixJ = cv.getPerspectiveTransform(pts1_J,pts2_J)
+imgJ = cv.warpPerspective(imgOri,matrixJ,(width,height))
+
+# cv.imshow("Original Image",imgOri)
+# cv.imshow("Result Image", result)
+cv.imshow("img K",imgK)
+cv.imshow("img Q",imgQ)
+cv.imshow("img J",imgJ)
+
+cv.waitKey(0)
+```
