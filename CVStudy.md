@@ -543,3 +543,350 @@ cv.imshow("img J",imgJ)
 
 cv.waitKey(0)
 ```
+### 6-Joining Image 连接图像
+```python
+# 拼接图像在同一个窗口展示
+import cv2 as cv
+import numpy as np
+print('Package Imported')
+
+horDataDir = 'Data/cljTest02.jpg'
+verDataDir = 'Data/whdTest02.jpg'
+
+imgForHor = cv.imread(horDataDir)
+imgForVar = cv.imread(verDataDir)
+
+imgHor = np.hstack((imgForHor, imgForHor)) # Horizontal 水平拼接
+imgVer = np.vstack((imgForVar, imgForVar)) # Vertical 垂直拼接
+
+# cv.imshow("imgForHor", imgForHor)
+# cv.imshow("imgForVer", imgForVar)
+cv.imshow("Horizontal", imgHor)
+cv.imshow("Vertical", imgVer)
+
+cv.waitKey(0)
+```
+#### 堆叠图片 Stack Image Function
+``` python
+# 堆叠函数
+import cv2 as cv
+import numpy as np
+print('Package Imported')
+
+def stackImages(scale,imgArray):
+    # & 输出一个 rows * cols 的矩阵（imgArray）
+    rows = len(imgArray)
+    cols = len(imgArray[0])
+    print(rows,cols)
+    # & 判断imgArray[0] 是不是一个list
+    rowsAvailable = isinstance(imgArray[0], list)
+    # & imgArray[0][0]就是指[0,0]的那个图片（我们把图片集分为二维矩阵，第一行、第一列的那个就是第一个图片）
+    width = imgArray[0][0].shape[1]
+    height = imgArray[0][0].shape[0]
+    if rowsAvailable:
+        for x in range (0, rows):
+            for y in range(0, cols):
+                # & 判断图像与后面那个图像的形状是否一致，若一致则进行等比例放缩；否则，先resize为一致，后进行放缩
+                if imgArray[x][y].shape[:2] == imgArray[0][0].shape [:2]:
+                    imgArray[x][y] = cv.resize(imgArray[x][y], (0, 0), None, scale, scale)
+                else:
+                    imgArray[x][y] = cv.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]), None, scale, scale)
+                # & 如果是灰度图，则变成RGB图像（为了弄成一样的图像）
+                if len(imgArray[x][y].shape) == 2: imgArray[x][y]= cv.cvtColor( imgArray[x][y], cv.COLOR_GRAY2BGR)
+        # & 设置零矩阵
+        imageBlank = np.zeros((height, width, 3), np.uint8)
+        hor = [imageBlank]*rows
+        hor_con = [imageBlank]*rows
+        for x in range(0, rows):
+            hor[x] = np.hstack(imgArray[x])
+        ver = np.vstack(hor)
+    # & 如果不是一组照片，则仅仅进行放缩 or 灰度转化为RGB
+    else:
+        for x in range(0, rows):
+            if imgArray[x].shape[:2] == imgArray[0].shape[:2]:
+                imgArray[x] = cv.resize(imgArray[x], (0, 0), None, scale, scale)
+            else:
+                imgArray[x] = cv.resize(imgArray[x], (imgArray[0].shape[1], imgArray[0].shape[0]), None,scale, scale)
+            if len(imgArray[x].shape) == 2: imgArray[x] = cv.cvtColor(imgArray[x], cv.COLOR_GRAY2BGR)
+        hor= np.hstack(imgArray)
+        ver = hor
+    return ver
+
+stackDataDir = 'Data/whdTest02.jpg'
+imgForStack = cv.imread(stackDataDir)
+imgGray = cv.cvtColor(imgForStack, cv.COLOR_BGR2GRAY)
+stackImage = stackImages(0.5, ([imgForStack, imgForStack, imgGray],[imgForStack, imgForStack, imgForStack]))
+
+cv.imshow('Stack Image', stackImage)
+
+cv.waitKey(0)
+```
+### 7-Color Detecion 颜色检测
+#### Trackbar
+滑动条（Trackbar）是一种可以动态调节参数的工具，它依附于窗口而存在。 namedWindow()函数的作用是通过指定的名字，创建一个可以作为图像和进度条的容器窗口。
+```python
+import cv2 as cv
+print('Package Imported')
+dataDir = 'Data/whdTest02.jpg'
+# TrackBar
+def empty(a):
+    pass
+cv.namedWindow("TrackBars") # create new window
+cv.resizeWindow("TrackBars", 640, 240)
+# 色相/饱和度/明度（Hue, Saturation, Value）
+# Hue 色相
+cv.createTrackbar("Hue Min", "TrackBars", 0, 179, empty) 
+cv.createTrackbar("Hue Max", "TrackBars", 179, 179, empty)
+# Saturation 饱和度
+cv.createTrackbar("Sat Min", "TrackBars", 0, 255, empty)
+cv.createTrackbar("Sat Max", "TrackBars", 255, 255, empty)
+# Value 明度
+cv.createTrackbar("Val Min", "TrackBars", 0, 255, empty)
+cv.createTrackbar("Val Max", "TrackBars", 255, 255, empty)
+
+imgOri = cv.imread(dataDir)
+imgHSV = cv.cvtColor(imgOri, cv.COLOR_BGR2HSV)
+
+cv.imshow('Original Image', imgOri)
+cv.imshow('HSV Image', imgHSV)
+
+cv.waitKey(0)
+
+import cv2 as cv
+import numpy as np
+print('Package Imported')
+dataDir = 'Data/whdTest02.jpg'
+# TrackBar
+def empty(a):
+    pass
+cv.namedWindow("TrackBars") # create new window
+cv.resizeWindow("TrackBars", 640, 240)
+# 色相/饱和度/明度（Hue, Saturation, Value）
+# Hue 色相
+cv.createTrackbar("Hue Min", "TrackBars", 14, 179, empty)  # 0
+cv.createTrackbar("Hue Max", "TrackBars", 143, 179, empty) # 179
+# Saturation 饱和度
+cv.createTrackbar("Sat Min", "TrackBars", 128, 255, empty) # 0  
+cv.createTrackbar("Sat Max", "TrackBars", 200, 255, empty) # 255
+# Value 明度
+cv.createTrackbar("Val Min", "TrackBars", 55, 255, empty) # 0
+cv.createTrackbar("Val Max", "TrackBars", 255, 255, empty) # 255
+
+while True:
+    imgOri = cv.imread(dataDir)
+    imgHSV = cv.cvtColor(imgOri, cv.COLOR_BGR2HSV)
+    h_min = cv.getTrackbarPos("Hue Min", "TrackBars")
+    h_max = cv.getTrackbarPos("Hue Max", "TrackBars")
+    s_min = cv.getTrackbarPos("Sat Min", "TrackBars")
+    s_max = cv.getTrackbarPos("Sat Max", "TrackBars")
+    v_min = cv.getTrackbarPos("Val Min", "TrackBars")
+    v_max = cv.getTrackbarPos("Val Max", "TrackBars")
+    print(h_min, h_max, s_min, s_max, v_min, v_max)
+    lower = np.array([h_min, s_min, v_min])
+    upper = np.array([h_max, s_max, v_max])
+    mask = cv.inRange(imgHSV, lower, upper) # 变化蒙版
+    
+    imgResult = cv.bitwise_and(imgOri, imgOri, mask=mask)
+    imgStack = stackImages(0.5, ([imgOri, imgHSV],[mask, imgResult]))
+    
+
+#     cv.imshow('Original Image', imgOri)
+#     cv.imshow('HSV Image', imgHSV)
+#     cv.imshow("Mask", mask)
+#     cv.imshow("Result Image", imgResult)
+    cv.imshow("Result Image", imgStack)
+    
+    cv.waitKey(1)
+```
+### 8-Contours/ Shape Detection 轮廓\形状 检测
+⭐⭐**getContours(img) Function 获取轮廓函数 重要**
+```python
+# 获取轮廓函数 getContours(img) Function
+import cv2 as cv
+print("Package Imported")
+
+def getContours(img):
+    contours, hierarchy = cv.findContours(img, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
+    for cnt in contours:
+        area = cv.contourArea(cnt)
+#         print(area) # 打印区域面积
+#         cv.drawContours(imgContour, cnt, -1, (255,0,0),3)
+        if area > 500:
+            cv.drawContours(imgContour, cnt, -1, (255,0,0),3)
+            peri = cv.arcLength(cnt,True) # 计算封闭轮廓的周长或曲线的长度
+#             print(peri)
+            approx = cv.approxPolyDP(cnt, 0.02*peri, True) # 对图像轮廓点进行多边形拟合
+#             print(approx)
+#             print(len(approx)) # 判断3，4边形
+            objCor = len(approx)
+            x, y, w, h = cv.boundingRect(approx) # 形状边框
+            if objCor == 3:
+                objectType = "Triangle" # 三角形
+            elif objCor == 4:
+                aspRatio = w / float(h) # Aspect ratio 纵横比
+                if aspRatio > 0.95 and aspRatio < 1.05:
+                    objectType = "Square" # 正方形
+                else:
+                    objectType = "Rectangle"
+            elif objCor > 4: 
+                objectType = "Circles"
+            else:
+                objectType = "None"
+            cv.rectangle(imgContour, (x,y), (x+w, y+h), (0,0,255), 2)
+            
+            cv.putText(imgContour, objectType, (x+(w//2)-10, y+(h//2)-10), cv.FONT_HERSHEY_COMPLEX, 0.7, (0,0,0), 2)
+
+import cv2 as cv
+import numpy as np
+print("Package Imported")
+
+dataDir = 'Data/shapes.png'
+imgOri = cv.imread(dataDir)
+imgContour = imgOri.copy()
+imgGray = cv.cvtColor(imgOri, cv.COLOR_BGR2GRAY)
+imgBlur = cv.GaussianBlur(imgGray, (7,7), 1)
+imgCanny = cv.Canny(imgOri, 50, 50) 
+imgBlank = np.zeros_like(imgOri)
+getContours(imgCanny)
+imgStack = stackImages(0.8, ([imgOri, imgGray, imgBlur],[imgCanny, imgContour, imgBlank]))
+
+# cv.imshow("Original Image", imgOri)
+# cv.imshow("Gray Image", imgGray)
+# cv.imshow("Blur Image", imgBlur)
+# cv.imshow("Canny Image", imgCanny)
+cv.imshow("Stack Image Result", imgStack)
+
+cv.waitKey(0)       
+```
+### 9-Face Detection  ⭐⭐⭐⭐
+CascadeClassifier(): 级联分类器 detectMultiScale(): 检测出图片中所有的人脸，并将人脸用vector保存各个人脸的坐标、大小（用矩形表示）
+参数1：image -- 待检测图片，一般为灰度图像加快检测速度；
+参数2：objects -- 被检测物体的矩形框向量组；
+参数3：scaleFactor - 表示在前后两次相继的扫描中，搜索窗口的比例系数。默认为1.1即每次搜索窗口依次扩大10%;
+参数4：minNeighbors 表示构成检测目标的相邻矩形的最小个数(默认为3个)。
+  如果组成检测目标的小矩形的个数和小于 min_neighbors - 1 都会被排除。
+  如果min_neighbors 为 0, 则函数不做任何操作就返回所有的被检候选矩形框，
+  这种设定值一般用在用户自定义对检测结果的组合程序上；
+参数5：flags 要么使用默认值，要么使用CV_HAAR_DO_CANNY_PRUNING，如果设置为CV_HAAR_DO_CANNY_PRUNING，那么函数将会使用Canny边缘检测来排除边缘过多或过少的区域，因此这些区域通常不会是人脸所在区域；
+参数6、7：minSize和maxSize用来限制得到的目标区域的范围。
+```python
+# 图片人脸检测-原始code
+import cv2 as cv
+import numpy as np
+print("Package Imported")
+
+imageDir = 'Data/lena.png'
+# "C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml"
+# 注：使用库中的分类器文件
+classifierDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml"
+
+faceCascade= cv.CascadeClassifier(classifierDir) # 级联分类器
+imgOri = cv.imread(imageDir)
+imgGray = cv.cvtColor(imgOri, cv.COLOR_BGR2GRAY)
+
+# faces = faceCascade.detectMultiScale(imgGray,1.1,4) 
+faces = faceCascade.detectMultiScale(imgGray)
+# 画出识别框
+for (x, y, w, h) in faces:
+#     print(x, y, w, h)
+    cv.rectangle(imgOri, (x, y), (x+w, y+h), (255,0,0), 2)
+    
+# cv.imshow("Original Image", imgOri)
+cv.imshow("Gray Image", imgGray)
+cv.imshow("Result", imgOri)
+
+cv.waitKey(0)
+```
+```python
+# face detection函数
+import cv2 as cv
+print("Package Imported")
+
+def catchFaces(ClassifierDir, imgOri):
+    imgGray = cv.cvtColor(imgOri, cv.COLOR_BGR2GRAY)
+    faceCascade = cv.CascadeClassifier(classifierDir)
+    faces = faceCascade.detectMultiScale(imgGray)
+    for (x, y, w, h) in faces:
+        cv.rectangle(imgOri, (x, y), (x+w, y+h), (255,0,0), 2)
+    cv.imshow("catachFaces Func Result",imgOri)
+    cv.waitKey(0)
+
+import cv2 as cv
+print("Package Imported")
+
+dataDir = 'Data/lena.png'
+classifierDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml"
+imgOri = cv.imread(dataDir)
+# cv.imshow("Orignal Image", imgOri)
+catchFaces(classifierDir, imgOri)
+# cv.waitKey(0)
+
+# 测试其他图像
+import cv2 as cv
+print("Package Imported")
+dataDir = 'Data/whdTest02.jpg'
+imgTest01 = cv.imread(dataDir)
+classifierDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml"
+# cv.imshow("Original Image", imgTest01)
+# cv.waitKey(0)
+catchFaces(classifierDir, imgTest01)
+
+import cv2 as cv
+print("Package Imported")
+dataDir = 'Data/cljTest01.jpg'
+imgTest02 = cv.imread(dataDir)
+classifierDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml"
+# cv.imshow("Original Image", imgTest02)
+# cv.waitKey(0)
+catchFaces(classifierDir, imgTest02)
+```
+#### 摄像头实时检测人脸、眼睛、微笑
+```python
+# 摄像头实时人脸、眼睛、微笑检测
+import cv2 as cv
+print("Package Imported")
+
+# 数据地址
+faceDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_frontalface_default.xml"
+eyeDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_eye.xml"
+smileDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data\haarcascade_smile.xml"
+
+# 级联
+faceCascade = cv.CascadeClassifier(faceDir)
+eyeCascade = cv.CascadeClassifier(eyeDir)
+smileCascade = cv.CascadeClassifier(smileDir)
+
+# 打开摄像头
+cap = cv.VideoCapture(0)
+
+while True:
+    # 读取帧画面
+    ret, img = cap.read()
+    # 灰度处理
+    imgGray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    # 人脸检测
+    face = faceCascade.detectMultiScale(imgGray, 1.1, 3, 0, (120, 120))
+    
+    for (x, y, w, h) in face:
+        cv.rectangle(img, (x, y), (x+w, y+h), (255, 255, 255), 3)
+        faceArea =  img[y:y+h, x:x+w]
+        # 用人眼级联分类器引擎在人脸区域进行人眼识别，返回的eyes为眼睛坐标列表
+        eyes = eyeCascade.detectMultiScale(faceArea, 1.3, 10)
+        for (ex, ey, ew, eh) in eyes:
+            cv.rectangle(faceArea, (ex, ey), (ex+ew, ey+eh), (0, 255, 0), 1)
+        # 用人眼级联分类器引擎在人脸区域进行人眼识别，返回的eyes为眼睛坐标列表
+        smile = smileCascade.detectMultiScale(faceArea, scaleFactor=1.16, minNeighbors=50, minSize=(50, 50),flags=cv.CASCADE_SCALE_IMAGE)
+        for (sx, sy, sw, sh) in smile:
+            cv.rectangle(faceArea, (sx, sy), (sx+sw, sy+sh), (255, 0, 0), 1)
+            cv.putText(img, 'Smile', (x, y - 7), 3, 1.2, (0, 0, 255), 2, cv.LINE_AA)
+
+    # 展示结果
+    cv.imshow("Detection Result", img)
+    
+    if cv.waitKey(5) & 0xFF == ord("q"):
+        # 释放资源
+        cap.release()
+        # 销毁窗口
+        cv.destroyAllWindows()
+        break
+```
