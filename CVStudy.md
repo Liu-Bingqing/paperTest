@@ -890,3 +890,127 @@ while True:
         cv.destroyAllWindows()
         break
 ```
+### Project2-Document Scanner 文件扫描
+
+#### 原代码
+```python
+
+```
+#### 改进代码
+``` python
+
+```
+### Project3-Number Plate Detection 号牌检测
+应用脸部识别的haar级联分类器，画框
+#### 基于图片数据
+函数化
+```python
+# scanNumberPlate Func
+def scanNumberPlate(image, imgCount, objectDir):
+    haarRootDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data"
+    haarType = "\haarcascade_russian_plate_number.xml"
+    haarDir = haarRootDir + haarType
+    nPlateCascade = cv2.CascadeClassifier(haarDir) # 级联分类器
+    minArea = 300
+    color = (255,0,255)
+    
+    imgGray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # 682, 1023 height,width
+    numberPlates = nPlateCascade.detectMultiScale(imgGray, 1.1, 10)
+    for (x, y, w, h) in numberPlates:
+        area = w * h
+        if area > minArea:
+            cv2.rectangle(image, (x,y), (x+w, y+h), color, 2)
+            cv2.putText(image, "Number Plate", (x, y-1), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, color, 2)
+            imgRoi = imgOri[y:y+h, x:x+w]
+            cv2.imwrite(objectDir + str(imgCount) + ".jpg", imgRoi)
+    print("Completed!!!")
+
+import cv2
+print("Package Imported")
+
+dataDir = "Data/p3.jpg"
+imgOri = cv2.imread(dataDir)
+savedDir = "Data/nPlate_"
+
+scanNumberPlate(imgOri, 3, savedDir)
+```
+原代码
+```python
+import cv2
+print("Package Imported")
+########################################################################
+dataDir = "Data/p3.jpg"
+haarRootDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data"
+haarType = "\haarcascade_russian_plate_number.xml"
+haarDir = haarRootDir + haarType
+nPlateCascade = cv2.CascadeClassifier(haarDir) # 级联分类器
+minArea = 300
+color = (255,0,255)
+count = 3
+########################################################################
+imgOri = cv2.imread(dataDir) #682,1023,3 height,width,channel
+imgGray = cv2.cvtColor(imgOri, cv2.COLOR_BGR2GRAY) # 682, 1023 height,width
+
+numberPlates = nPlateCascade.detectMultiScale(imgGray, 1.1, 4)
+# 画出识别框
+for (x, y, w, h) in numberPlates:
+    area = w * h
+    if area > minArea:
+        cv2.rectangle(imgOri, (x, y), (x+w, y+h), color, 2)
+        cv2.putText(imgOri, "Number Plate", (x, y-1), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, color, 2)
+        imgRoi = imgOri[y:y+h, x:x+w]
+        cv2.imshow("Number Plate Image Result", imgRoi)
+
+cv2.imshow("Result in Original Image", imgOri)
+cv2.waitKey(0)
+```
+#### 基于视频、摄像头实时视频数据
+```python
+import cv2
+print("Package Imported")
+########################################################################
+frameWidth = 640
+frameHeight = 480
+haarRootDir = r"C:\\Users\10959\anaconda3\Lib\site-packages\cv2\data"
+haarType = "\haarcascade_russian_plate_number.xml"
+haarDir = haarRootDir + haarType
+nPlateCascade = cv2.CascadeClassifier(haarDir) # 级联分类器
+minArea = 300
+color = (255,0,255)
+count = 0
+########################################################################
+cap = cv2.VideoCapture(0)
+cap.set(3, frameWidth)
+cap.set(4, frameHeight)
+cap.set(10, 150)
+
+while True:
+    success, img = cap.read()
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化图像
+    numberPlates = nPlateCascade.detectMultiScale(imgGray, 1.1, 10) # 识别
+    for (x, y, w, h) in numberPlates:
+        area = w*h
+        if area > minArea:
+            cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
+            cv2.putText(img, "Number Plate", (x,y-5), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, color, 2)
+            imgRoi = img[y:y+h,x:x+w]
+            cv2.imshow("ROI", imgRoi)
+    
+    cv2.imshow("Result", img)
+    
+    if cv2.waitKey(1) & 0xFF == ord('s'):
+        cv2.imwrite("Data/NoPlate_"+ str(count) + ".jpg",imgRoi)
+        cv2.rectangle(img, (0,200), (640,300), (0,255,0), cv2.FILLED)
+        cv2.putText(img,"Scan Saved", (150,265), cv2.FONT_HERSHEY_DUPLEX, 2, (0,0,255), 2)
+        cv2.imshow("Result",img)
+        cv2.waitKey(500)
+        count +=1
+    
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cap.release()
+        cv2.destroyAllWindows()
+        break
+        
+cap.release()
+cv2.destroyAllWindows()
+```
