@@ -365,6 +365,7 @@ visualize(out, color=data.y)
 ## OpenCV with python
 Github Link: https://github.com/murtazahassan/Learn-OpenCV-in-3-hours
 B站：【3h精通Opencv-Python】https://www.bilibili.com/video/BV16K411W7x9?vd_source=cf518f0e157700ce8a169afae9bf19ea
+## Learning information
 ### 1-读取数据
 ```python
 # 读取展示图片
@@ -890,15 +891,451 @@ while True:
         cv.destroyAllWindows()
         break
 ```
-### Project2-Document Scanner 文件扫描
+### Project1-Virtual Paint 虚拟画图
+#### Original Code
+```python
+# 主流程
+# 基于视频文件或摄像实时提取
+import cv2
+import numpy as np
+import pytesseract
+from PIL import Image
+print("Package Imported")
 
+#######################
+imgWidth = 480
+imgHeight = 640
+count = 0
+cap = cv2.VideoCapture(1)
+cap.set(3, 480)
+cap.set(4, 640)
+cap.set(10, 150)
+#######################
+
+while True:
+    success, img = cap.read()
+
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化图像
+    imgCopyForContour = img.copy()
+    imgCopyForBiggest = img.copy()
+    imgThres = preProcessing(img) # 对原图像预处理
+    drawThresInImage(imgThres, imgCopyForContour) # Thres Contour
+    biggestPoints = getBiggest(imgThres, imgCopyForBiggest) # 获取文本轮廓角点 (4, 1, 2) 4个1行2列的数组
+    
+    # 判断是否有角点，即是否有文本出现在检测框中
+    if biggestPoints.size != 0:
+        imgWarped = getWarp(img, biggestPoints) # 鸟瞰转换 透视转换
+        warpGray = cv2.cvtColor(imgWarped, cv2.COLOR_BGR2GRAY)
+        result = cv2.adaptiveThreshold(warpGray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 5, 3) # 自适应阈值结果
+        resultImageArray = [[img, imgGray, imgThres, imgCopyForContour], [imgCopyForBiggest, imgWarped, warpGray, result]]
+    else:
+        resultImageArray = [[img, imgThres], [img, img]]
+        
+    # 图片堆叠显示
+    resultImage = stackImages(0.5, resultImageArray)
+    cv2.imshow("Result", resultImage)
+        
+    if cv2.waitKey(1) & 0xFF == ord("s"):
+        saveImageToText(result, count)
+        cv2.rectangle(img, (0, 200), (640, 300), (0,255,0), cv2.FILLED)
+        cv2.putText(img, "Scan Saved", (150, 265), cv2.FONT_HERSHEY_DUPLEX, 2, (0,0,255), 2)
+        cv2.imshow("Scan State", img)
+        cv2.waitKey(10)
+        count += 1
+        continue
+
+    if cv2.waitKey(1) & 0xFF == ord("q"):
+        cap.release()
+        cv2.destroyAllWindows()
+        break
+        
+cap.release()
+cv2.destroyAllWindows()
+```
+#### Improved Code
+
+### Project2-Document Scanner 文件扫描
+项目要求：对图片文件、视频数据、实时摄像数据进行文件提取和文件内容扫描
 #### 原代码
 ```python
+import cv2
+import numpy as np
 
+
+###################################
+widthImg=540
+heightImg =640
+#####################################
+
+cap = cv2.VideoCapture(1)
+cap.set(10,150)
+
+
+def preProcessing(img):
+    imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    imgBlur = cv2.GaussianBlur(imgGray,(5,5),1)
+    imgCanny = cv2.Canny(imgBlur,200,200)
+    kernel = np.ones((5,5))
+    imgDial = cv2.dilate(imgCanny,kernel,iterations=2)
+    imgThres = cv2.erode(imgDial,kernel,iterations=1)
+    return imgThres
+
+def getContours(img):
+    biggest = np.array([])
+    maxArea = 0
+    contours,hierarchy = cv2.findContours(img,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+    for cnt in contours:
+        area = cv2.contourArea(cnt)
+        if area>5000:
+            #cv2.drawContours(imgContour, cnt, -1, (255, 0, 0), 3)
+            peri = cv2.arcLength(cnt,True)
+            approx = cv2.approxPolyDP(cnt,0.02*peri,True)
+            if area >maxArea and len(approx) == 4:
+                biggest = approx
+                maxArea = area
+    cv2.drawContours(imgContour, biggest, -1, (255, 0, 0), 20)
+    return biggest
+
+def reorder (myPoints):
+    myPoints = myPoints.reshape((4,2))
+    myPointsNew = np.zeros((4,1,2),np.int32)
+    add = myPoints.sum(1)
+    #print("add", add)
+    myPointsNew[0] = myPoints[np.argmin(add)]
+    myPointsNew[3] = myPoints[np.argmax(add)]
+    diff = np.diff(myPoints,axis=1)
+    myPointsNew[1]= myPoints[np.argmin(diff)]
+    myPointsNew[2] = myPoints[np.argmax(diff)]
+    #print("NewPoints",myPointsNew)
+    return myPointsNew
+
+def getWarp(img,biggest):
+    biggest = reorder(biggest)
+    pts1 = np.float32(biggest)
+    pts2 = np.float32([[0, 0], [widthImg, 0], [0, heightImg], [widthImg, heightImg]])
+    matrix = cv2.getPerspectiveTransform(pts1, pts2)
+    imgOutput = cv2.warpPerspective(img, matrix, (widthImg, heightImg))
+
+    imgCropped = imgOutput[20:imgOutput.shape[0]-20,20:imgOutput.shape[1]-20]
+    imgCropped = cv2.resize(imgCropped,(widthImg,heightImg))
+
+    return imgCropped
+
+
+def stackImages(scale,imgArray):
+    rows = len(imgArray)
+    cols = len(imgArray[0])
+    rowsAvailable = isinstance(imgArray[0], list)
+    width = imgArray[0][0].shape[1]
+    height = imgArray[0][0].shape[0]
+    if rowsAvailable:
+        for x in range ( 0, rows):
+            for y in range(0, cols):
+                if imgArray[x][y].shape[:2] == imgArray[0][0].shape [:2]:
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (0, 0), None, scale, scale)
+                else:
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]), None, scale, scale)
+                if len(imgArray[x][y].shape) == 2: imgArray[x][y]= cv2.cvtColor( imgArray[x][y], cv2.COLOR_GRAY2BGR)
+        imageBlank = np.zeros((height, width, 3), np.uint8)
+        hor = [imageBlank]*rows
+        hor_con = [imageBlank]*rows
+        for x in range(0, rows):
+            hor[x] = np.hstack(imgArray[x])
+        ver = np.vstack(hor)
+    else:
+        for x in range(0, rows):
+            if imgArray[x].shape[:2] == imgArray[0].shape[:2]:
+                imgArray[x] = cv2.resize(imgArray[x], (0, 0), None, scale, scale)
+            else:
+                imgArray[x] = cv2.resize(imgArray[x], (imgArray[0].shape[1], imgArray[0].shape[0]), None,scale, scale)
+            if len(imgArray[x].shape) == 2: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)
+        hor= np.hstack(imgArray)
+        ver = hor
+    return ver
+
+while True:
+    success, img = cap.read()
+    img = cv2.resize(img,(widthImg,heightImg))
+    imgContour = img.copy()
+
+    imgThres = preProcessing(img)
+    biggest = getContours(imgThres)
+    if biggest.size !=0:
+        imgWarped=getWarp(img,biggest)
+        # imageArray = ([img,imgThres],
+        #           [imgContour,imgWarped])
+        imageArray = ([imgContour, imgWarped])
+        cv2.imshow("ImageWarped", imgWarped)
+    else:
+        # imageArray = ([img, imgThres],
+        #               [img, img])
+        imageArray = ([imgContour, img])
+
+    stackedImages = stackImages(0.6,imageArray)
+    cv2.imshow("WorkFlow", stackedImages)
+
+    if cv.waitKey(1) & 0xFF == ord("q"):
+        cap.release()
+        cv.destroyAllWindows()
+        break
+cap.release()
+cv.destroyAllWindows()
 ```
 #### 改进代码
+##### Related Functions
 ``` python
+# 图像堆叠函数
+def stackImages(scale, imgArray):
+    # & 输出一个 rows * cols 的矩阵（imgArray）
+    rows = len(imgArray)
+    cols = len(imgArray[0])
+    print(rows,cols)
+    # & 判断imgArray[0] 是不是一个list
+    rowsAvailable = isinstance(imgArray[0], list)
+    # & imgArray[0][0]就是指[0,0]的那个图片（我们把图片集分为二维矩阵，第一行、第一列的那个就是第一个图片）
+    width = imgArray[0][0].shape[1]
+    height = imgArray[0][0].shape[0]
+    if rowsAvailable:
+        for x in range (0, rows):
+            for y in range(0, cols):
+                # & 判断图像与后面那个图像的形状是否一致，若一致则进行等比例放缩；否则，先resize为一致，后进行放缩
+                if imgArray[x][y].shape[:2] == imgArray[0][0].shape [:2]:
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (0, 0), None, scale, scale)
+                else:
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]), None, scale, scale)
+                # & 如果是灰度图，则变成RGB图像（为了弄成一样的图像）
+                if len(imgArray[x][y].shape) == 2: imgArray[x][y]= cv2.cvtColor( imgArray[x][y], cv2.COLOR_GRAY2BGR)
+        # & 设置零矩阵
+        imageBlank = np.zeros((height, width, 3), np.uint8)
+        hor = [imageBlank] * rows
+        hor_con = [imageBlank] * rows
+        for x in range(0, rows):
+            hor[x] = np.hstack(imgArray[x])
+        ver = np.vstack(hor)
+    # & 如果不是一组照片，则仅仅进行放缩 or 灰度转化为RGB
+    else:
+        for x in range(0, rows):
+            if imgArray[x].shape[:2] == imgArray[0].shape[:2]:
+                imgArray[x] = cv2.resize(imgArray[x], (0, 0), None, scale, scale)
+            else:
+                imgArray[x] = cv2.resize(imgArray[x], (imgArray[0].shape[1], imgArray[0].shape[0]), None,scale, scale)
+            if len(imgArray[x].shape) == 2: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)
+        hor= np.hstack(imgArray)
+        ver = hor
+    return ver
 
+# 其他相关算法
+
+# 等比缩小图片 func
+def resizeImages(image, scale):
+    result = cv2.resize(image, (int(image.shape[1]/scale), int(image.shape[0]/scale)))
+    return result
+
+# 图像预处理
+def preProcessing(image):
+    imgGray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # 灰度图
+    imgBlur = cv2.GaussianBlur(imgGray, (5,5), 1) # 高斯模糊
+    imgCanny = cv2.Canny(imgBlur, 200, 200) # 边缘检测
+    kernel = np.ones((5,5)) # 结构元素
+    imgDial = cv2.dilate(imgCanny, kernel, iterations=2) # 膨胀
+    imgThres = cv2.erode(imgDial, kernel, iterations=1) # 腐蚀
+    return imgThres
+
+# 绘制Thres在原图的显示
+def drawThresInImage(image, imageCopy):
+    contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    cv2.drawContours(image=imageCopy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2, lineType=cv2.LINE_AA)
+
+# 获取最大轮廓角点
+def getBiggest(image, imageCopy):
+    biggest = np.array([])
+    maxArea = 0
+    # 轮廓检测
+    contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    for cnt in contours:
+        area = cv2.contourArea(cnt) # 轮廓内面积
+        if area > 500:
+            peri = cv2.arcLength(cnt, True) # 周长 计算封闭轮廓的周长或曲线的长度
+            approx = cv2.approxPolyDP(cnt, 0.02*peri, True) # 角点 对图像轮廓点进行多边形拟合
+            if area > maxArea and len(approx) == 4:
+                biggest = approx # 获取最大矩阵框
+                maxArea = area # 获取最大面积
+    
+    # 定位文本四个点
+    cv2.drawContours(imageCopy, biggest, -1, (255,0,0), 30) # 定位文本的四个点
+    return biggest
+
+def reorder(points):
+    pointsReshaped = points.reshape((4,2)) # 四个角点 (4, 2)
+    newBiggest = np.zeros((4,1,2), np.int32)
+    
+    # 点按照一定的顺序重新排列
+    add = pointsReshaped.sum(1) # 计算x+y
+    newBiggest[0] = pointsReshaped[np.argmin(add)] # 和最小的点是左上角点 left_up
+    newBiggest[3] = pointsReshaped[np.argmax(add)] # 和最大的点是右下角点 right_right
+    
+    diff = np.diff(pointsReshaped, axis=1) # 将点进行x-y差异计算
+    newBiggest[1] = pointsReshaped[np.argmin(diff)] # 差异最小的点为右上 right_up
+    newBiggest[2] = pointsReshaped[np.argmax(diff)] # 差异最大的点为左下 left_down
+    
+    return newBiggest
+
+# 鸟瞰转换 透视转换
+def getWarp(image, biggest):
+    '''
+    鸟瞰转换 透视转换
+    image -> 图像
+    biggest -> 角点坐标 np.array
+    '''
+    newBiggestPoints = reorder(biggest) # 矩阵角点处理，对角点进行统一排序
+    # 点1
+    pts1 = np.float32(newBiggestPoints)
+    # 点2
+    pts2 = np.float32([[0,0], [imgWidth,0], [0,imgHeight],[imgWidth, imgHeight]])
+    matrix = cv2.getPerspectiveTransform(pts1,pts2) # 转换矩阵
+    imgOutput = cv2.warpPerspective(image, matrix, (imgWidth, imgHeight))
+    
+    # 裁剪边缘其他背景，将裁剪后的图像重新调整为原理窗口
+    imgCropped = imgOutput[20:imgOutput.shape[0]-20, 20:imgOutput.shape[1]-20]
+    imgCropped = cv2.resize(imgCropped, (imgWidth,imgHeight))
+    
+    return imgCropped
+
+# 保存扫描结果并识别文本内容
+def saveImageToText(image, count):
+    imageDir = "Result/Document Detection Result_" + str(count) + ".jpg"
+    textDir = "Result/TextResult_" + str(count) + ".text"
+    cv2.imwrite(imageDir, image)
+    text = pytesseract.image_to_string(Image.open(imageDir))
+    print(text)
+    
+    with open(textDir, 'w', encoding='utf-8') as f:
+        f.write(text)
+        f.close
+```
+##### 基于图片数据扫描文档
+标注可以省略，非强制
+```python
+# 主流程
+# Data/book.jpg
+# 基于图片数据进行文本扫描
+import cv2
+import numpy as np
+import pytesseract
+from PIL import Image
+print("Package Imported")
+
+#######################
+imgWidth = 480
+imgHeight = 640
+dataDir = "Data/paper.jpg"
+count = 1
+#######################
+
+img = cv2.imread(dataDir)
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化处理
+
+imgCopyForContour = img.copy()
+imgCopyForBiggest = img.copy()
+imgThres = preProcessing(img) # 对原图像预处理
+drawThresInImage(imgThres, imgCopyForContour) # Thres Contour
+# cv2.imshow("test01", imgCopyForContour)
+biggestPoints = getBiggest(imgThres, imgCopyForBiggest) # 获取文本轮廓角点 (4, 1, 2) 4个1行2列的数组
+# 标注
+cv2.rectangle(img, (0, 0), (1000,200), (255,255,255), cv2.FILLED) # (minX, minY) (maxX, maxY)
+cv2.putText(img, "Orignal Image", (30, 130), cv2.FONT_HERSHEY_DUPLEX, 4, (0,0,0), 7)
+cv2.rectangle(imgGray, (0, 0),(1000,200), (255,255,255), cv2.FILLED)
+cv2.putText(imgGray, "Gray Image", (120, 130), cv2.FONT_HERSHEY_DUPLEX, 4, (0,0,0), 7)
+cv2.rectangle(imgThres, (0, 0),(1000,200), (255,255,255), cv2.FILLED)
+cv2.putText(imgThres, "Threshold", (180, 130), cv2.FONT_HERSHEY_DUPLEX, 4, (0,0,0), 7)
+cv2.rectangle(imgCopyForContour, (0, 0),(1000,200), (255,255,255), cv2.FILLED)
+cv2.putText(imgCopyForContour, "Contours", (200, 130), cv2.FONT_HERSHEY_DUPLEX, 4, (0,0,0), 7)
+cv2.rectangle(imgCopyForBiggest, (0, 0),(1000,200), (255,255,255), cv2.FILLED)
+cv2.putText(imgCopyForBiggest, "Biggest Points", (30, 130), cv2.FONT_HERSHEY_DUPLEX, 4, (0,0,0), 7)
+
+# 判断是否有角点，即是否有文本出现在检测框中
+if biggestPoints.size != 0:
+    imgWarped = getWarp(img, biggestPoints) # 鸟瞰转换 透视转换
+    cv2.rectangle(imgWarped, (0, 0),(175,30), (255,255,255), cv2.FILLED)
+    cv2.putText(imgWarped, "Warped Image", (5,20), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0,0,0), 2)
+    warpGray = cv2.cvtColor(imgWarped, cv2.COLOR_BGR2GRAY)
+    cv2.rectangle(warpGray, (0, 0),(175,30), (255,255,255), cv2.FILLED)
+    cv2.putText(warpGray, "Warped Gray", (15,20), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0,0,0), 2)
+    result = cv2.adaptiveThreshold(warpGray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 5, 3) # 自适应阈值结果
+    cv2.rectangle(result, (0, 0),(175,30), (255,255,255), cv2.FILLED)
+    cv2.putText(result, "Scan Result", (20,20), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0,0,0), 2)
+#     result = cv2.threshold(warpGray, 120, 255, cv2.THRESH_BINARY)[1] # 二值化
+    resultImageArray = [[img, imgGray, imgThres, imgCopyForContour], [imgCopyForBiggest, imgWarped, warpGray, result]]
+    saveImageToText(result, count)
+else:
+    resultImageArray = [[img, imgThres], [img, img]]
+
+# 图片堆叠显示
+resultImage = stackImages(0.1, resultImageArray)
+cv2.imshow("Result", resultImage)
+print("Completed!!!")
+cv2.waitKey(0)
+```
+##### 基于视频数据或实时摄像机扫描文档
+注意：imgHeight imgWidth
+```python
+# 主流程
+# 基于视频文件或摄像实时提取
+import cv2
+import numpy as np
+import pytesseract
+from PIL import Image
+print("Package Imported")
+
+#######################
+imgWidth = 480
+imgHeight = 640
+count = 0
+cap = cv2.VideoCapture(1)
+cap.set(3, 480)
+cap.set(4, 640)
+cap.set(10, 150)
+#######################
+
+while True:
+    success, img = cap.read()
+
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化图像
+    imgCopyForContour = img.copy()
+    imgCopyForBiggest = img.copy()
+    imgThres = preProcessing(img) # 对原图像预处理
+    drawThresInImage(imgThres, imgCopyForContour) # Thres Contour
+    biggestPoints = getBiggest(imgThres, imgCopyForBiggest) # 获取文本轮廓角点 (4, 1, 2) 4个1行2列的数组
+    
+    # 判断是否有角点，即是否有文本出现在检测框中
+    if biggestPoints.size != 0:
+        imgWarped = getWarp(img, biggestPoints) # 鸟瞰转换 透视转换
+        warpGray = cv2.cvtColor(imgWarped, cv2.COLOR_BGR2GRAY)
+        result = cv2.adaptiveThreshold(warpGray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 5, 3) # 自适应阈值结果
+        resultImageArray = [[img, imgGray, imgThres, imgCopyForContour], [imgCopyForBiggest, imgWarped, warpGray, result]]
+    else:
+        resultImageArray = [[img, imgThres], [img, img]]
+        
+    # 图片堆叠显示
+    resultImage = stackImages(0.5, resultImageArray)
+    cv2.imshow("Result", resultImage)
+        
+    if cv2.waitKey(1) & 0xFF == ord("s"):
+        saveImageToText(result, count)
+        cv2.rectangle(img, (0, 200), (640, 300), (0,255,0), cv2.FILLED)
+        cv2.putText(img, "Scan Saved", (150, 265), cv2.FONT_HERSHEY_DUPLEX, 2, (0,0,255), 2)
+        cv2.imshow("Scan State", img)
+        cv2.waitKey(10)
+        count += 1
+        continue
+
+    if cv2.waitKey(1) & 0xFF == ord("q"):
+        cap.release()
+        cv2.destroyAllWindows()
+        break
+        
+cap.release()
+cv2.destroyAllWindows()
 ```
 ### Project3-Number Plate Detection 号牌检测
 应用脸部识别的haar级联分类器，画框
