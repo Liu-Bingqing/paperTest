@@ -953,7 +953,6 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 #### Improved Code
-
 ### Project2-Document Scanner 文件扫描
 项目要求：对图片文件、视频数据、实时摄像数据进行文件提取和文件内容扫描
 #### 原代码
