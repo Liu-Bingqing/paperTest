@@ -1697,3 +1697,130 @@ kernel = np.ones((7,7), np.uint8)
 blackhat = cv2.morphologyEx(imgGray, cv2.MORPH_BLACKHAT, kernel)
 showImage(blackhat)
 ```
+#### 图像梯度处理
+1. Sobel算子
+dst = cv2.Sobel(src, ddepth, dx, dy, ksize)
+- ddepth：图像深度
+- dx、dy：分别表示水平、垂直方向
+- ksize：Sobel算子大小
+2. Scharr算子
+结果敏感，含有较多细节
+3. laplacian算子
+对噪声敏感
+``` python
+# 不同算子的差异
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02Gray.jpg"
+img = cv2.imread(dataDir, cv2.IMREAD_GRAYSCALE)
+showImage(img)
+
+# sobel
+sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+sobelx = cv2.convertScaleAbs(sobelx)
+# showImage(sobelx)
+sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+sobely = cv2.convertScaleAbs(sobely)
+# showImage(sobely)
+# 再求xy轴
+sobelxy = cv2.addWeighted(sobelx, 0.5, sobely, 0.5, 0)
+# showImage(sobelxy)
+
+# scharr
+scharrx = cv2.Scharr(img, cv2.CV_64F, 1, 0)
+scharrx = cv2.convertScaleAbs(scharrx)
+scharry = cv2.Scharr(img, cv2.CV_64F, 0, 1)
+scharry = cv2.convertScaleAbs(scharry)
+scharrxy = cv2.addWeighted(scharrx, 0.5, scharry, 0.5, 0)
+# showImage(scharrxy)
+
+# laplacian
+laplacian = cv2.Laplacian(img, cv2.CV_64F)
+laplacian = cv2.convertScaleAbs(laplacian)
+
+result = np.hstack((sobelxy, scharrxy, laplacian))
+showImage(result)
+```
+#### Canny边缘检测
+- 1. 使用高斯滤波器平滑图像，滤除噪音
+- 2. 计算图中每个像素点的梯度强度和方向
+- 3. 应用非极大值（Non-Maximum Suppression）抑制，以消除边缘检测带来的杂散响应
+- 4. 应用双阈值（Double-Threshold）检测来确定真实和潜在边缘
+- 5. 通过抑制孤立的弱边缘最终完成边缘检测
+``` python
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02Gray.jpg"
+img = cv2.imread(dataDir, cv2.IMREAD_GRAYSCALE)
+
+canny1 = cv2.Canny(img, 80, 150) #minVal,maxVal
+canny2 = cv2.Canny(img, 50, 100)
+
+result = np.hstack((img, canny1, canny2))
+showImage(result)
+```
+#### 图像金字塔
+- 高斯金字塔
+- 拉普拉斯金字塔
+##### 高斯金字塔
+1. 向下采样方法（缩小）
+    - 1.图像与高斯内核卷积
+    - 2.去除所有偶数行和列
+2. 向上采用方法（放大）
+    - 1.将图像在每个方向扩大为原来的两倍，新增行和列以0填充
+    - 2.使用先前同样的内核（乘以4）与放大后的图像卷积，获得近似值
+``` python
+import cv2
+print("Package Imported")
+
+dataDir = "Data/whdTest03.jpg"
+imgOri = cv2.imread(dataDir)
+print(imgOri.shape) # (445, 520, 3)
+showImage(imgOri)
+
+# 上采样 放大
+upImage = cv2.pyrUp(imgOri)
+print(upImage.shape) # (890, 1040, 3)
+showImage(upImage)
+
+# 下采样 缩小
+downImage = cv2.pyrDown(imgOri)
+print(downImage.shape) # (223, 260, 3)
+showImage(downImage) 
+
+# 原图与采样后对比，图像清晰度下降
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+imgOri = cv2.imread(dataDir)
+
+imgUp = cv2.pyrUp(imgOri)
+upDown = cv2.pyrDown(imgUp)
+
+result = np.hstack((imgOri, upDown))
+showImage(result)
+```
+##### 拉普拉斯金字塔
+先down后up，原图-downUp
+``` python
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+imgOri = cv2.imread(dataDir)
+
+# 先down后up，原图-downUp
+imgDown = cv2.pyrDown(imgOri)
+downUp = cv2.pyrUp(imgDown)
+laplas = imgOri - downUp
+
+result = np.hstack((imgOri, laplas))
+showImage(result)
+```
