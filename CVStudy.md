@@ -362,11 +362,11 @@ out = model(data.x, data.edge_index)
 visualize(out, color=data.y)
 ```
 # OpenCV
-## OpenCV with python
+## OpenCV with python 3h Learning
 Github Link: https://github.com/murtazahassan/Learn-OpenCV-in-3-hours
 B站：【3h精通Opencv-Python】https://www.bilibili.com/video/BV16K411W7x9?vd_source=cf518f0e157700ce8a169afae9bf19ea
-## Learning information
-### 1-读取数据
+### Learning information
+#### 1-读取数据
 ```python
 # 读取展示图片
 import cv2
@@ -417,8 +417,8 @@ while True:
         cv.destroyAllWindows()
         break
 ```
-### 2-图像基本处理
-灰度图像、模糊图像、图像边缘、图像膨胀、图像腐蚀functions
+#### 2-图像基本处理
+##### 灰度图像、模糊图像、图像边缘、图像膨胀、图像腐蚀functions
 ```python
 # 灰度图像、模糊图像、图像边缘、图像膨胀、图像腐蚀functions
 import cv2 as cv
@@ -447,8 +447,8 @@ cv.imshow("Eroded Image", imgEroded)
 
 cv.waitKey(0)
 ```
-### 3-图像大小及裁剪
-重置图像大小、裁剪图片
+#### 3-图像大小及裁剪
+##### 重置图像大小、裁剪图片
 ```python
 import cv2 as cv
 print("Package Imported")
@@ -473,8 +473,8 @@ cv.imshow("Cropped Image", imgCropped)
 
 cv.waitKey(0)
 ```
-### 4-画图
-画出矩形、线条、圆形、文本
+#### 4-画图
+##### 画出矩形、线条、圆形、文本
 ```python
 # 画出矩形、线条、圆形、文本
 import cv2 as cv
@@ -501,8 +501,8 @@ cv.imshow("Canvas Image", imgCanvas)
 
 cv.waitKey(0)
 ```
-### 5-透视
-warp prespective
+#### 5-透视
+##### warp prespective
 翘曲透视。对图像进行透视变换。简单来说，就是有这么一副图像，它的拍摄视角不是从正面拍摄的，而是带有一定的角度，我们希望能得到从正面观察的视角
 ```python
 import cv2 as cv
@@ -544,7 +544,7 @@ cv.imshow("img J",imgJ)
 
 cv.waitKey(0)
 ```
-### 6-Joining Image 连接图像
+#### 6-Joining Image 连接图像
 ```python
 # 拼接图像在同一个窗口展示
 import cv2 as cv
@@ -622,8 +622,8 @@ cv.imshow('Stack Image', stackImage)
 
 cv.waitKey(0)
 ```
-### 7-Color Detecion 颜色检测
-#### Trackbar
+#### 7-Color Detecion 颜色检测
+##### Trackbar
 滑动条（Trackbar）是一种可以动态调节参数的工具，它依附于窗口而存在。 namedWindow()函数的作用是通过指定的名字，创建一个可以作为图像和进度条的容器窗口。
 ```python
 import cv2 as cv
@@ -699,7 +699,7 @@ while True:
     
     cv.waitKey(1)
 ```
-### 8-Contours/ Shape Detection 轮廓\形状 检测
+#### 8-Contours/ Shape Detection 轮廓\形状 检测
 ⭐⭐**getContours(img) Function 获取轮廓函数 重要**
 ```python
 # 获取轮廓函数 getContours(img) Function
@@ -759,7 +759,7 @@ cv.imshow("Stack Image Result", imgStack)
 
 cv.waitKey(0)       
 ```
-### 9-Face Detection  ⭐⭐⭐⭐
+#### 9-Face Detection  ⭐⭐⭐⭐
 CascadeClassifier(): 级联分类器 detectMultiScale(): 检测出图片中所有的人脸，并将人脸用vector保存各个人脸的坐标、大小（用矩形表示）
 参数1：image -- 待检测图片，一般为灰度图像加快检测速度；
 参数2：objects -- 被检测物体的矩形框向量组；
@@ -891,8 +891,8 @@ while True:
         cv.destroyAllWindows()
         break
 ```
-### Project1-Virtual Paint 虚拟画图
-#### Original Code
+#### Project1-Virtual Paint 虚拟画图
+##### Original Code
 ```python
 # 主流程
 # 基于视频文件或摄像实时提取
@@ -952,10 +952,10 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 ```
-#### Improved Code
-### Project2-Document Scanner 文件扫描
+##### Improved Code
+#### Project2-Document Scanner 文件扫描
 项目要求：对图片文件、视频数据、实时摄像数据进行文件提取和文件内容扫描
-#### 原代码
+##### 原代码
 ```python
 import cv2
 import numpy as np
@@ -1080,7 +1080,7 @@ while True:
 cap.release()
 cv.destroyAllWindows()
 ```
-#### 改进代码
+##### 改进代码
 ##### Related Functions
 ``` python
 # 图像堆叠函数
@@ -1336,9 +1336,9 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 ```
-### Project3-Number Plate Detection 号牌检测
+#### Project3-Number Plate Detection 号牌检测
 应用脸部识别的haar级联分类器，画框
-#### 基于图片数据
+##### 基于图片数据
 函数化
 ```python
 # scanNumberPlate Func
@@ -1400,7 +1400,7 @@ for (x, y, w, h) in numberPlates:
 cv2.imshow("Result in Original Image", imgOri)
 cv2.waitKey(0)
 ```
-#### 基于视频、摄像头实时视频数据
+##### 基于视频、摄像头实时视频数据
 ```python
 import cv2
 print("Package Imported")
@@ -1449,4 +1449,251 @@ while True:
         
 cap.release()
 cv2.destroyAllWindows()
+```
+## OpenCV with python 补充学习 supplement
+### 基本操作 Basic Operation
+#### Open Data
+``` python
+import cv2
+print('Package Imported')
+# 检查视频是否打开
+dataDir = "Data/objectDetectionTest.mp4"
+vc = cv2.VideoCapture(dataDir)
+
+if vc.isOpened():
+    open, frame = vc.read()
+else:
+    open = False
+    
+while open:
+    ret, frame = vc.read()
+    if frame is None:
+        break
+    if ret == True:
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        cv2.imshow("result", gray)
+        if cv2.waitKey(0) & 0xFF == 27: # esc退出键  0 表示视频单帧， 
+            break
+            
+vc.release()
+cv2.destroyAllWindows()
+```
+**show image 封装**
+``` python
+# 打开图像操作 Func 封装
+def showImage(image):
+    cv2.imshow("Result", image)
+    cv2.waitKey(0) # 点击任意键
+    cv2.destroyAllWindows()
+```
+#### 颜色通道提取
+OpenCV 通道排序 BGR
+``` python
+# 颜色通道提取
+import cv2
+
+dataDir = "Data/whdTest02.jpg"
+img = cv2.imread(dataDir)
+
+b, g, r = cv2.split(img)
+print(type(r))
+print(r)
+print(r.shape)
+print(img_r[:,:,2])
+
+# 重新恢复image - 颜色通道merge
+imgMerged = cv2.merge((b,g,r))
+img.shape
+```
+**颜色通道分离Image Func 封装**
+``` python
+import cv2
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+img = cv2.imread(dataDir)
+
+# 只保留R单通道的图像展示
+def imgToR(image):
+    img_r = image.copy()
+    img_r[:,:,0] = 0 # B channel 0
+    img_r[:,:,1] = 0 # G channel 0
+    return img_r
+
+# 只保留B单通道的图像展示
+def imgToB(image):
+    img_b = image.copy()
+    img_b[:,:,1] = 0 # G channel 0
+    img_b[:,:,2] = 0 # R channel 0
+    return img_b
+
+# 只保留G单通道的图像展示
+def imgToG(image):
+    img_g = image.copy()
+    img_g[:,:,0] = 0 # B channel 0
+    img_g[:,:,2] = 0 # R channel 0
+    return img_g
+
+result_r = imgToR(img)
+showImage(result_r)
+result_b = imgToB(img)
+showImage(result_b)
+result_g = imgToG(img)
+showImage(result_g)
+```
+#### 数值计算
+``` python
+# 相当于 % 255
+(img + img2)[:5,:,0]
+
+cv2.add(img, img2)[:5,:,0]
+```
+#### 图像融合
+**注**：图像shape值不同不可融合
+``` python
+img2_fusion = cv2.addWeighted(img1, 0.6, img2_resize, 0.2, 0)
+```
+**cv2.resize 可实现图像等比例缩放**
+``` python
+img1_resize = cv2.resize(img1, (0,0), fx=0.5, fy=0.5)
+```
+#### 图像阈值处理
+ret, dst = cv2.threshold(src, thresh, maxval, type)
+- src: input image 注：只能输入单通道，一般为gray image
+- dst: output image
+- thresh: threshold number
+- maxval: 当像素超过阈值（或小于阈值 type决定）则赋予的值
+- type: 二值化操作类型，cv2.THRESH_BINARY、cv2.THRESH_BINARY_INV、cv2.THRESH_TRUNC、cv2.THRESH_TOZERO、cv2.THRESH_TOZERO_INV
+    - cv2.THRESH_BINARY：超过阈值部分取maxval（最大值），否则为0
+    - cv2.THRESH_BINARY_INV：cv2.THRESH_BINARY 反转
+    - cv2.THRESH_TRUNC：大于阈值部分设为阈值，否则不变
+    - cv2.THRESH_TOZERO： 大于阈值部分不变，否则为0
+    - cv2.THRESH_TOZERO_INV： cv2.THRESH_TOZERO 反转
+``` python
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+dataDir2 = "Data/whdTest03.jpg"
+img = cv2.imread(dataDir2)
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# 阈值变化
+ret1, thresh1 = cv2.threshold(imgGray, 127, 255, cv2.THRESH_BINARY) # 二值处理
+ret2, thresh2 = cv2.threshold(imgGray, 127, 255, cv2.THRESH_BINARY_INV) 
+ret3, thresh3 = cv2.threshold(imgGray, 127, 255, cv2.THRESH_TRUNC) 
+ret4, thresh4 = cv2.threshold(imgGray, 127, 255, cv2.THRESH_TOZERO) 
+ret5, thresh5 = cv2.threshold(imgGray, 127, 255, cv2.THRESH_TOZERO_INV) 
+
+titles = ["Original Image", "Binary", "Binary_inv", "Trunc", "Tozero", "Tozero_inv"]
+images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]
+
+for i in range(6):
+    plt.subplot(2, 3, i+1), plt.imshow(images[i], "gray")
+    plt.title(titles[i])
+    plt.xticks([]), plt.yticks([])
+plt.show()
+
+# showImage(img)
+# showImage(thresh1)
+# print("threshold1: ", ret1)
+```
+#### 图像平滑处理
+首先给图像添加椒盐噪声，作为噪声图像
+``` python
+# 给图像加椒盐噪声
+import cv2
+import numpy as np
+print("Package Imported")
+    
+dataDir = "Data/whdTest03.jpg"
+img = cv2.imread(dataDir)
+noise = np.random.randint(0, 256, size=img.shape)##生成随机噪声 注意这个函数是下闭上开的
+noise = np.where(noise > 250, 255, 0) #设定一个阈值，大于的取255，小于的取0
+
+noise = noise.astype('float')
+img = img.astype("float")
+img = img + noise
+#读入的图像的数据类型是uint8，相加的话不会截取，而是自动对256取余，所以我们需要转换为float后再相加
+#这时候图像的数据都是float，并且有的是大于255的，对于大于255的，我们进行截取
+img = np.where(img>255,255,img)
+img = img.astype('uint8')
+showImage(img)
+cv2.imwrite("Data/whdNoise.jpg", img)
+```
+各种滤波去噪
+``` python
+import cv2
+print("Package Imported")
+
+# 均值滤波 简单的平均卷积操作
+blur = cv2.blur(img, (3,3))
+
+# 方框滤波 当归一化时normalize=True结果与均值滤波一致，否则像素越界像素值为255
+box_T = cv2.boxFilter(img, -1, (3,3), normalize=True) # 结果与均值滤波一致
+box_F = cv2.boxFilter(img, -1, (3,3), normalize=False)
+
+# 高斯滤波 高斯模糊的卷积核中数值需要满足高斯分布，相当于更重视中间数值
+aussian = cv2.GaussianBlur(img, (5,5), 1)
+
+# 中值滤波 相当于中值替代
+median = cv2.medianBlur(img, 5)
+
+# 拼接结果 hstack 横向拼接 vstack 纵向拼接
+import numpy as np
+result = np.hstack((img, blur, aussian, median))
+showImage(result)
+```
+#### 图像处理
+补充梯度处理、顶帽、黑帽
+##### 梯度处理
+``` python
+# 梯度运算=膨胀-腐蚀
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+img = cv2.imread(dataDir)
+kernel = np.ones((7,7), np.uint8)
+
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+dilate = cv2.dilate(imgGray,kernel,iterations=5)
+erosion = cv2.erode(imgGray, kernel, iterations=5)
+
+result = np.hstack((dilate, erosion))
+showImage(result)
+
+gradient = cv2.morphologyEx(imgGray, cv2.MORPH_GRADIENT, kernel)
+showImage(gradient)
+```
+##### 顶帽
+顶帽：原始输入-开运算结果
+``` python
+# 顶帽：原始输入-开运算结果
+import cv2
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+img = cv2.imread(dataDir)
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+kernel = np.ones((7,7), np.uint8)
+
+tophat = cv2.morphologyEx(imgGray, cv2.MORPH_TOPHAT, kernel)
+showImage(tophat)
+```
+##### 黑帽
+黑帽：闭运算-原始输入
+``` python
+# 黑帽：闭运算-原始输入
+import cv2
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+img = cv2.imread(dataDir)
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+kernel = np.ones((7,7), np.uint8)
+
+blackhat = cv2.morphologyEx(imgGray, cv2.MORPH_BLACKHAT, kernel)
+showImage(blackhat)
 ```
