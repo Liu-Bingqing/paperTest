@@ -2304,5 +2304,131 @@ while(True):
 cv2.destroyAllWindows()
 cap.release()
 ```
-### OpenCV DNN模块
+## OpenCV DNN模块
 是OpenCV专门用来实现深度神经网络相关的模块
+### 标签文件处理 
+特征标签文本文件处理，取到synset_words.txt 第一列标签数据
+``` python
+# 标签文件处理
+labelPath = "files/synset_words.txt"
+rows = open(labelPath).read().strip().split("\n") # 将txt每行作为列表的每个元素，即rows[0] = txt第一行数据
+classes = [r[r.find(" ") + 1:].split(",")[0] for r in rows] # 取txt编码空格后的第一个数据
+```
+### 图像处理 - 打开待预测数据，进行resize和均值处理
+#### 图像路径处理 - utils_path.py
+``` python
+import os
+
+image_types = (".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff")
+
+def list_files(basePath, validExts=None, contains=None):
+    for (rootDir, dirNames, filenames) in os.walk(basePath):
+        for filename in filenames:
+            # 如果包含字符串不是none，并且文件名不包含提供的字符串，则忽略该文件
+            if contains is not None and filename.find(contains) == -1:
+                continue
+
+            ext = filename[filename.rfind("."):].lower() # 扩展名
+
+            # 检测数据是否为图像
+            if validExts is None or ext.endswith(validExts):
+                # 构建图像的路径并生成图像
+                imagePath = os.path.join(rootDir, filename)
+                yield imagePath
+
+def list_images(basePath, contains=None):
+    # 返回有效的文件集
+    return list_files(basePath, validExts=image_types, contains=contains)
+```
+#### 主函数中图像处理
+以单图像为例，**注：单图像使用cv2.dnn.blobFromImage**
+``` python
+import cv2
+image = cv2.imread(imagePath[0]) # 第一张图 images/beer.png
+resized = cv2.resize(image, (244,244)) #Resize Image [input_dim: 224 input_dim: 224] in bvlc_googlenet.prototxt
+blob = cv2.dnn.blobFromImage(resized, 1, (244,244), (104,117,123)) # RGB分量均值化
+print("First Blob: {}".format(blob.shape))
+```
+### 模型建立、训练、预测
+``` python
+# Caffe所需配置文件, Net Structure
+net = cv2.dnn.readNetFromCaffe("bvlc_googlenet.prototxt", "bvlc_googlenet.caffemodel")
+net.setInput(blob) # 输入数据 训练模型
+preds = net.forward() # 前向传播，预测结果
+```
+### 绘制结果
+``` python
+# 排序，取分类可能性最大的
+idx = np.argsort(preds[0])[::-1][0]
+text = "Label: {}, {:.2f}%".format(classes[idx], preds[0][idx] * 100)
+cv2.putText(image, text, (5, 25),  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
+
+cv2.imshow("Result", image)
+cv2.waitKey(0)
+```
+### 原函数
+#### 单图像
+``` python
+import cv2
+import numpy as np
+
+# 标签文件处理
+labelPath = "files/synset_words.txt"
+rows = open(labelPath).read().strip().split("\n") # 将txt每行作为列表的每个元素，即rows[0] = txt第一行数据
+classes = [r[r.find(" ") + 1:].split(",")[0] for r in rows] # 取txt编码空格后的第一个数据
+
+# 图像路径
+imageRoot = "images/"
+imagePaths = sorted(list(list_images(imageRoot)))
+# 图像预处理
+image = cv2.imread(imagePaths[0]) # 第一张图 images/beer.png
+resized = cv2.resize(image, (244,244)) #Resize Image [input_dim: 224 input_dim: 224] in bvlc_googlenet.prototxt
+blob = cv2.dnn.blobFromImage(resized, 1, (244,244), (104,117,123)) # RGB分量均值化
+print("First Blob: {}".format(blob.shape))
+
+# Caffe所需配置文件, Net Structure
+net = cv2.dnn.readNetFromCaffe("bvlc_googlenet.prototxt", "bvlc_googlenet.caffemodel")
+net.setInput(blob) # 输入数据 训练模型
+preds = net.forward() # 前向传播，预测结果
+
+# 排序，取分类可能性最大的
+idx = np.argsort(preds[0])[::-1][0]
+text = "Label: {}, {:.2f}%".format(classes[idx], preds[0][idx] * 100)
+cv2.putText(image, text, (5, 25),  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
+
+cv2.imshow("Result", image)
+cv2.waitKey(0)
+```
+#### batch 多图像集
+``` python
+import cv2
+import numpy as np
+
+# 标签文件处理
+labelPath = "files/synset_words.txt"
+rows = open(labelPath).read().strip().split("\n") # 将txt每行作为列表的每个元素，即rows[0] = txt第一行数据
+classes = [r[r.find(" ") + 1:].split(",")[0] for r in rows] # 取txt编码空格后的第一个数据
+
+# 图像路径
+imageRoot = "images/"
+imagePaths = sorted(list(list_images(imageRoot)))
+images = []
+for p in imagePaths:
+    image = cv2.imread(p)
+    image = cv2.resize(image, (244,244))
+    images.append(image)
+blob = cv2.dnn.blobFromImages(images, 1, (244,244), (104,117,123))
+print("Blob: {}".format(blob.shape))
+
+# 模型
+net = cv2.dnn.readNetFromCaffe("bvlc_googlenet.prototxt", "bvlc_googlenet.caffemodel")
+net.setInput(blob)
+preds = net.forward()
+for (i, p) in enumerate(imagePaths):
+    image = cv2.imread(p)
+    idx = np.argsort(preds[i])[::-1][0]
+    text = "Label: {}, {:.2f}%".format(classes[idx], preds[i][idx] * 100)
+    cv2.putText(image, text, (5, 25),  cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+    cv2.imshow("Image", image)
+    cv2.waitKey(0)
+```
