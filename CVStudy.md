@@ -1824,3 +1824,485 @@ laplas = imgOri - downUp
 result = np.hstack((imgOri, laplas))
 showImage(result)
 ```
+#### 图像轮廓
+**cv2.findContours(img, mode, method)**
+- mode: 轮廓检测模式
+    - RETR_EXTERNAL：只检测最外面的轮廓
+    - RETR_LIST：检测所有的轮廓，并将其保存到一条链表中
+    - RETR_CCOMP：检测所有轮廓，将其组织为两层，顶部是各部分的外部边界，第二层是空洞边界
+    - RETR_TREE：检测所有轮廓，并重构嵌套轮廓的整个层次
+- method：轮廓逼近方法
+    - CHAIN_APPROX_NONE：以Freeman链码的方式输出轮廓，所有其他方法输出多边形（顶点序列）
+    - CHAIN_APPROX_SIMPLE：压缩水平的、垂直的和斜的，函数只保留终点部分
+``` python
+# 注：需要对原始数据进行预处理-灰度化，二值化
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+img = cv2.imread(dataDir)
+# 图像预处理
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化，消除通道
+ret, thresh = cv2.threshold(imgGray, 127, 255, cv2.THRESH_BINARY) # 二值化
+# showImage(thresh)
+contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE) # 注：不能使用多通道图像，必须单通道图片
+# 绘制轮廓
+# 传入绘制图像，轮廓，轮廓索引，颜色模式，线条厚度
+imgCopy = img.copy() # 对原图像无影响
+imgCon = cv2.drawContours(imgCopy, contours, -1, (0,0,255), 1)
+# showImage(result)
+result = np.hstack((img, imgCon))
+showImage(result)
+```
+##### 轮廓特征
+``` python
+cnt = contours[0]
+# 面积
+cv2.contourArea(cnt)
+# 周长
+cv2.arcLength(cnt, True) # True 表示闭合周长
+```
+##### 轮廓近似
+``` python
+import cv2
+import numpy as np
+print("Package Imported")
+
+dataDir = "Data/whdTest02.jpg"
+imgOri = cv2.imread(dataDir)
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化，消除通道
+ret, thresh = cv2.threshold(imgGray, 127, 255, cv2.THRESH_BINARY) # 二值化
+contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE) # 注：不能使用多通道图像，必须单通道图片
+cnt = contours[0]
+
+imgDraw1 = img.copy()
+result1 = cv2.drawContours(imgDraw1, [cnt], -1, (0,0,255), 2)
+
+epsilon = 0.1 * cv2.arcLength(cnt, True)
+approx = cv2.approxPolyDP(cnt, epsilon, True)
+
+imgDraw2 = img.copy()
+result2 = cv2.drawContours(imgDraw2, [approx], -1, (0,0,255), 2)
+```
+#### 模板匹配
+模板匹配和卷积原理相似，模板在原图像上从原点开始滑动，计算模板与（图像被模板覆盖的地方）的差别程度，这个差别程度的计算方法在opencv里有6种，然后将每次计算的结果放入矩阵种，作为输出结果。若原图A*B，模板a*b，则结果矩阵（A-a+1）*(B-b+1)
+- TM_SQDIFF：计算平方不同，计算出来的值越小，越相关
+- TM_CCORR：计算相关性，结果值越大，越相关
+- TM_CCOEFF：计算相关系数，结果值越大，越相关
+- TM_SQDIFF_NORMED：计算归一化平方不同，结果值越接近0，越相关
+- TM_CCORR_NORMED：计算归一化相关性，结果值越接近1，越相关
+- TM_CCOEFF_NORMED：计算归一化相关系数，结果越接近1，越相关
+``` python
+# 模板匹配
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+#######################################################################################################################################
+methods = ["cv2.TM_SQDIFF", "cv2.TM_CCORR", "cv2.TM_CCOEFF", "cv2.TM_SQDIFF_NORMED", "cv2.TM_CCORR_NORMED", "cv2.TM_CCOEFF_NORMED"]
+imgOriDri = "Data/whdTest02.jpg"
+imgOri = cv2.imread(imgOriDri)
+templateDri = "Data/whdTest02.jpg"
+template = cv2.imread(templateDri)
+h, w = template.shape[0:2]
+#######################################################################################################################################
+
+for meth in methods:
+    img2 = img.copy()
+    
+    # 匹配方法真值
+    method = eval(meth)
+    print(method)
+    result = cv2.matchTemplate(img, template, method)
+    minVal, maxVal, minLoc, maxLoc = cv2.minMaxLoc(result)
+
+    # 若平方差匹配TM_SQDIFF或归一化平方差匹配TM_SQDIFF_NORMED，取最小值
+    if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+        topLeft = minLoc
+    else:
+        topLeft = maxLoc
+    bottomRight = (topLeft[0] + w, topLeft[1] + h)
+    
+    # 画矩阵
+    cv2.rectangle(img2, topLeft, bottomRight, 255, 2)
+    
+    plt.subplot(121), plt.imshow(result, cmap="gray")
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(122), plt.imshow(img2, cmap="gray")
+    plt.xticks([]), plt.yticks([])
+    plt.suptitle(meth)
+    plt.show()
+
+# 匹配多个对象
+import cv2
+import numpy as np
+
+img_rgb = cv2.imread("Data/whdTest02.jpg")
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 灰度化，消除通道
+template = cv2.imread("Data/whdTest02.jpg")
+h, w = template.shape[0:2]
+
+result = cv2.matchTemplate(imgGray, template, cv2.TM_CCOEFF_NORMED)
+threshold = 0.8
+# 取匹配程度大于%80的坐标
+loc = np.where(result >= threshold)
+for pt in zip(*loc[::-1]): # * 表示可选参数
+    bottomRight = (pt[0] + w, pt[1] + h)
+    cv2.rectangle(img_rgb, pt, bottomRight, (0,0,255), 2)
+    
+showImage(img_rgb)
+```
+#### 图像直方图
+**cv2.calcHist(images, channels, mask, histSize, ranges)**
+- images: 原图像 格式unit8/float32, [img]
+- channels: [0]-灰度图 [1][2][3]-BGR
+- mask: 掩膜图像，整幅图像None, 某一部分则需要制作相关掩膜
+- histSize: Bin数目
+- ranges: 像素值范围[0,256]
+``` python
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest03.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+##############################
+
+# 灰度图 histogram
+imgHist = cv2.calcHist([imgGray], [0], None, [256], [0, 256]) # histogram
+print("Histogram shape: ", imgHist.shape)
+plt.hist(imgGray.ravel(), 256)
+plt.show()
+
+# 彩色图 histogram
+color = ('b', 'g', 'r')
+for i, col in enumerate(color):
+    histr = cv2.calcHist([img], [i], None, [256], [0, 256])
+    plt.plot(histr, color=col)
+    plt.xlim([0,256])
+```
+##### 创建mask掩码
+``` python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest03.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+##############################
+
+mask = np.zeros(imgBGR.shape[:2], np.uint8)
+mask[100:350, 100:400] = 255
+imgMasked = cv2.bitwise_and(imgGray, imgGray, mask=mask) # 与操作
+
+histFull = cv2.calcHist([imgGray], [0], None, [256], [0,256]) # 无掩码
+histMask = cv2.calcHist([imgGray], [0], mask, [256], [0,256]) # 有掩码
+
+# 画出结果
+plt.subplot(221), plt.imshow(imgGray, 'gray')
+plt.subplot(222), plt.imshow(mask, 'gray')
+plt.subplot(223), plt.imshow(imgMasked, 'gray')
+plt.subplot(224), plt.plot(histFull), plt.plot(histMask)
+plt.xlim([0, 256])
+plt.show()
+```
+##### 直方图均衡化
+``` python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest02.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+##############################
+# 灰度图 histogram
+imgHist = cv2.calcHist([imgGray], [0], None, [256], [0, 256]) # histogram
+print("Histogram shape: ", imgHist.shape)
+plt.hist(imgGray.ravel(), 256)
+plt.show()
+# 直方图均衡化
+histEqu = cv2.equalizeHist(imgGray)
+plt.hist(histEqu.ravel(), 256)
+plt.show()
+
+# 对比展示
+result = np.hstack((imgGray, histEqu))
+showImage(result)
+```
+##### 直方图均衡化
+``` python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest03.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+##############################
+
+# 灰度图 histogram
+imgHist = cv2.calcHist([imgGray], [0], None, [256], [0, 256]) # histogram
+print("Histogram shape: ", imgHist.shape)
+# plt.hist(imgGray.ravel(), 256)
+# plt.show()
+# 直方图均衡化
+histEqu = cv2.equalizeHist(imgGray)
+# plt.hist(histEqu.ravel(), 256)
+# plt.show()
+# 自适应直方图均衡化
+histClahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+imgClahe = histClahe.apply(imgGray)
+showImage(imgClahe)
+
+# 对比展示
+result = np.hstack((imgGray, histEqu, imgClahe))
+showImage(result)
+```
+#### 傅里叶变化
+## 傅里叶变化
+1. 作用
+    - 高频：变化剧烈的灰度分离，例如边界
+    - 低频：变化缓慢的灰度分离，例如一片大海
+2. 滤波
+    - 低通滤波器：只保留低频，使图像模糊
+    - 高通滤波器：只保留高频，图像细节增强
+3. 注
+    - opencv中cv2.dft()和cv2.idft(),输入图像需要先转为np.float32格式
+    - 频率为0部分在左上角，需要通过shift转到中间位置
+    - dft结果为双通道(实部，虚部), 需要再转为图片格式
+``` python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest03.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+imgFloat32 = np.float32(imgGray)
+##############################
+
+imgDft = cv2.dft(imgFloat32, flags=cv2.DFT_COMPLEX_OUTPUT)
+dftShift = np.fft.fftshift(imgDft)
+result = 20 * np.log(cv2.magnitude(dftShift[:,:,0], dftShift[:,:,1]))
+
+plt.subplot(121), plt.imshow(imgGray, 'gray')
+plt.title("Input Image"), plt.xticks([]), plt.yticks([])
+plt.subplot(122), plt.imshow(result, 'gray')
+plt.title("Magnitude Spectrum"), plt.xticks([]), plt.yticks([])
+plt.show()
+```
+##### 低通滤波
+``` python
+# 低通滤波
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest02.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+imgFloat32 = np.float32(imgGray)
+##############################
+
+imgDft = cv2.dft(imgFloat32, flags=cv2.DFT_COMPLEX_OUTPUT)
+dftShift = np.fft.fftshift(imgDft)
+
+rows, cols = imgGray.shape
+crow, ccol = int(rows/2), int(cols/2) # 中心位置
+
+# 低通滤波
+mask = np.zeros((rows, cols, 2), np.uint8)
+mask[crow-30:crow+30, ccol-30:ccol+30] = 1
+
+# IDFT
+fshift = dftShift * mask
+f_ishift = np.fft.ifftshift(fshift)
+imgBack = cv2.idft(f_ishift)
+imgBack = cv2.magnitude(imgBack[:,:,0], imgBack[:,:,1])
+
+plt.subplot(121), plt.imshow(imgGray, "gray")
+plt.title("Input Image"), plt.xticks([]), plt.yticks([])
+plt.subplot(122), plt.imshow(imgBack, "gray")
+plt.title("Result"), plt.xticks([]), plt.yticks([])
+plt.show()
+```
+##### 高通滤波
+``` python
+# 高通滤波
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest02.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+imgFloat32 = np.float32(imgGray)
+##############################
+
+imgDft = cv2.dft(imgFloat32, flags=cv2.DFT_COMPLEX_OUTPUT)
+dftShift = np.fft.fftshift(imgDft)
+
+rows, cols = imgGray.shape
+crow, ccol = int(rows/2), int(cols/2) # 中心位置
+
+# 高通滤波
+mask = np.ones((rows, cols, 2), np.uint8)
+mask[crow-30:crow+30, ccol-30:ccol+30] = 0
+
+# IDFT
+fshift = dftShift * mask
+f_ishift = np.fft.ifftshift(fshift)
+imgBack = cv2.idft(f_ishift)
+imgBack = cv2.magnitude(imgBack[:,:,0], imgBack[:,:,1])
+
+plt.subplot(121), plt.imshow(imgGray, "gray")
+plt.title("Input Image"), plt.xticks([]), plt.yticks([])
+plt.subplot(122), plt.imshow(imgBack, "gray")
+plt.title("Result"), plt.xticks([]), plt.yticks([])
+plt.show()
+```
+#### 角点检测
+``` python
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+print("Package Imported")
+
+##############################
+imagePath = "Data/whdTest02.jpg"
+imgBGR = cv2.imread(imagePath)
+imgGray = cv2.imread(imagePath, 0) # 直接读成灰度图
+# imgFloat32 = np.float32(imgGray)
+##############################
+
+imgDst = cv2.cornerHarris(imgGray, 2, 3, 0.04)
+print("dst shape", imgDst.shape)
+imgBGR[imgDst>0.01*imgDst.max()] = [0,0,255]
+showImage(imgBGR)
+```
+## 背景建模
+### 帧差法
+由于场景中的目标在运动，目标的影像在不同图像帧中的位置不同。该类算法对时间上连续的两帧图像进行差分运算，不同帧对应的像素点相减，判断灰度差的绝对值，当绝对值超过一定阈值时，即可判断为运动目标，从而实现目标的检测功能。简单但会引起空洞
+### 混合高斯模型
+在进行前景检测前，先对背景进行训练，对图像中每个背景采用一个混合高斯模型进行模拟，每个背景的混合高斯的个数可以自适应。然后在测试阶段，对新来的像素进行GMM匹配，如果该像素值能够匹配其中一个高斯，则认为是背景，否则认为是前景。由于整个过程GMM模型在不断更新学习中，所以对动态背景有一定的鲁棒性。最后通过对一个有树枝摇摆的动态背景进行前景检测，取得了较好的效果。在视频中对于像素点的变化情况应当是符合高斯分布。背景的实际分布应当是多个高斯分布混合在一起，每个高斯模型也可以带有权重
+#### 学习方法
+- 1.首先初始化每个高斯模型矩阵参数。
+- 2.取视频中T帧数据图像用来训练高斯混合模型。来了第一个像素之后用它来当做第一个高斯分布。
+- 3.当后面来的像素值时，与前面已有的高斯的均值比较，如果该像素点的值与其模型均值差在3倍的方差内，则属于该分布，并对其进行参数更新。
+- 4.如果下一次来的像素不满足当前高斯分布，用它来创建一个新的高斯分布。
+#### 测试方法
+在测试阶段，对新来像素点的值与混合高斯模型中的每一个均值进行比较，如果其差值在2倍的方差之间的话，则认为是背景，否则认为是前景。将前景赋值为255，背景赋值为0。这样就形成了一副前景二值图。
+``` python
+import numpy as np
+import cv2
+print("Package Imported")
+
+dataDri = "Data/test.avi"
+cap = cv2.VideoCapture(dataDri) # 经典测试视频
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)) # 形态学操作者使用
+fgbg = cv2.createBackgroundSubtractorMOG2() # 创建混合高斯模型用于背景建模
+
+while(True):
+    ret, frame = cap.read()
+    fgmask = fgbg.apply(frame)
+    fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_OPEN, kernel) #形态学开运算去噪点
+    contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) # 寻找视频中的轮廓
+    
+    for c in contours:
+        perimeter = cv2.arcLength(c, True) # 轮廓周长
+        if perimeter > 188 and perimeter < 500:
+            x,y,w,h = cv2.boundingRect(c) # 找到一个直矩形（不会旋转）
+            cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 2) # 画出这个矩形
+    cv2.imshow("frame", frame)
+    cv2.imshow("fgmask", fgmask)
+    k = cv2.waitKey(150) & 0xff
+    if k == 27:
+        break
+        
+cap.release()
+cv2.destroyAllWindows()
+```
+#### 光流法
+光流是空间运动物体在观测成像平面上的像素运动的“瞬时速度”，根据各个像素点的速度矢量特征，可以对图像进行动态分析，例如目标跟踪。
+- 亮度恒定：同一点随着时间的变化，其亮度不会发生改变。
+- 小运动：随着时间的变化不会引起位置的剧烈变化，只有小运动情况下才能用前后帧之间单位位置变化引起的灰度变化去近似灰度对位置的偏导数。
+- 空间一致：一个场景上邻近的点投影到图像上也是邻近点，且邻近点速度一致。因为光流法基本方程约束只有一个，而要求x，y方向的速度，有两个未知变量。所以需要连立n多个方程求解。
+**cv2.calcOpticalFlowPyrLK()**参数：
+- prevImage 前一帧图像
+- nextImage 当前帧图像
+- prevPts 待跟踪的特征点向量
+- winSize 搜索窗口的大小
+- maxLevel 最大的金字塔层数
+返回：
+- nextPts 输出跟踪特征点向量
+- status 特征点是否找到，找到的状态为1，未找到的状态为0
+``` python
+import numpy as np
+import cv2
+print("Package Imported")
+
+dataDri = "Data/test.avi"
+cap = cv2.VideoCapture(dataDri)
+
+featureParams = dict(maxCorners = 100, qualityLevel = 0.3, minDistance = 7) # 角点检测所需参数
+lkParams = dict(winSize=(15,15), maxLevel=2) # lucas kanade参数
+color = np.random.randint(0,255,(100,3)) # 随机颜色条
+
+ret, oldFrame = cap.read() # 拿到第一帧图像
+oldGray = cv2.cvtColor(oldFrame, cv2.COLOR_BGR2GRAY) # 灰度化
+
+# 返回所有检测特征点，需要输入图像，角点最大数量（效率），品质因子（特征值越大的越好，来筛选）
+# 距离相当于这区间有比这个角点强的，就不要这个弱的了
+p0 = cv2.goodFeaturesToTrack(oldGray, mask=None, **featureParams)
+mask = np.zeros_like(oldFrame) # 创建一个mask
+
+while(True):
+    ret,frame = cap.read()
+    frameGray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # 需要传入前一帧和当前图像以及前一帧检测到的角点
+    p1, st, err = cv2.calcOpticalFlowPyrLK(oldGray, frameGray, p0, None, **lkParams)
+
+    # st=1表示
+    good_new = p1[st==1]
+    good_old = p0[st==1]
+
+    # 绘制轨迹
+    for i,(new,old) in enumerate(zip(good_new,good_old)):
+        a,b = new.ravel()
+        c,d = old.ravel()
+        mask = cv2.line(mask, (int(a),int(b)), (int(c),int(d)), color[i].tolist(), 2)
+        frame = cv2.circle(frame,(int(a),int(b)),5,color[i].tolist(),-1)
+    img = cv2.add(frame, mask)
+
+    cv2.imshow('frame', img)
+    k = cv2.waitKey(150) & 0xff
+    if k == 27:
+        break
+
+    # 更新
+    oldGray = frameGray.copy()
+    p0 = good_new.reshape(-1,1,2)
+
+cv2.destroyAllWindows()
+cap.release()
+```
+### OpenCV DNN模块
+是OpenCV专门用来实现深度神经网络相关的模块
