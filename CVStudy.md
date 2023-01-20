@@ -2432,3 +2432,22 @@ for (i, p) in enumerate(imagePaths):
     cv2.imshow("Image", image)
     cv2.waitKey(0)
 ```
+## 卷积神经网络
+### 简介
+#### 流程
+1. Sample: a batch of data 样本 一批数据
+2. Forward: prop it through the graph, get loss 通过图表支撑，获得损失
+3. Backprop: to calculate the gradients 计算梯度
+4. Update: the parameters using the gradients 使用梯度更新参数
+#### 作用
+分类、推荐、检测、分割、自动驾驶、其他深度学习网络的应用
+#### 网络组成
+Input - conv - relu - pool - fc 输入层 - 卷积层 - 激活函数 - 池化层 - 全连接层
+1. 卷积层+relu
+有深度depth概念，卷积层的过滤器w,h,c，可以设计多个过滤器来提取不同的特征activation maps，进行特征融合。
+过滤器是三通道RGB可以对原图像进行特征提取
+**stride** 过滤器移动步长
+可以做权值共享，简化网络消耗
+2. pool 池化层
+特征压缩，mean和max进行压缩特征，下采样downSample
+
