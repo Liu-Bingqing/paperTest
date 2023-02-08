@@ -28,4 +28,4 @@
 [23] Actions as Space-Time Shapes - weizmann dataset cite01
 [24] Recognizing_human_actions_a_local_SVM_approach
 [25] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010.
-[26]
+[26] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020
