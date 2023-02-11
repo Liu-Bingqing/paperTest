@@ -29,3 +29,11 @@
 [24] Recognizing_human_actions_a_local_SVM_approach
 [25] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010.
 [26] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020
+## 第三章 基于***的视频动态目标提取
+[27] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
+[28] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027.
+[29] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442.
+[30] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712.
+[32] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87.
+[33] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062.
+[34] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560.
