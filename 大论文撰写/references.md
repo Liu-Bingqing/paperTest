@@ -40,3 +40,9 @@
 [34] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106.
 [35] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016.
 [36] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664. 
+[37] 基于背景减除和特征提取的跌倒识别方法 2020
+[38] 基于改进背景减法的视频图像运动目标检测
+[39] Research on Video-Based Human Action Behavior Recognition Algorithms
+[40]
+[41]
+[42]
