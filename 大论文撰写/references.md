@@ -47,3 +47,14 @@
 [43] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43
 [44] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44
 ## 第四章 跌倒行为特征分析
+[45] Research on Video-Based Human Action Behavior Recognition Algorithms 2020
+[46] 基于 AlphaPose优化模型的老人跌倒行为检测算法 2022
+[47] 基于图像识别技术的不安全行为识别 2020
+[48] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020
+[49] 基于卷积神经网络的室内跌倒行为实时检测系统的开发 2021
+[50] 基于深度神经网络的室内人体姿态检测与异常行为判断研究 2022
+[51] An Approach to Real-Time Fall Detection based on OpenPose and LSTM 2022
+
+[44] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52
+[45] 安防监控下人体异常行为检测算法研究 2022 53
+[46] Fall detection based on shape deformation 54
