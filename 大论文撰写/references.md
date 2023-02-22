@@ -54,7 +54,6 @@
 [49] 基于卷积神经网络的室内跌倒行为实时检测系统的开发 2021
 [50] 基于深度神经网络的室内人体姿态检测与异常行为判断研究 2022
 [51] An Approach to Real-Time Fall Detection based on OpenPose and LSTM 2022
-
-[44] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52
-[45] 安防监控下人体异常行为检测算法研究 2022 53
-[46] Fall detection based on shape deformation 54
+[52] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52
+[53] 安防监控下人体异常行为检测算法研究 2022 53
+[54] Fall detection based on shape deformation 54
