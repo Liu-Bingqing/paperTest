@@ -51,9 +51,10 @@
 [46] 基于 AlphaPose优化模型的老人跌倒行为检测算法 2022
 [47] 基于图像识别技术的不安全行为识别 2020
 [48] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020
-[49] 基于卷积神经网络的室内跌倒行为实时检测系统的开发 2021
+[49] 基于深度学习的居家老人跌倒检测研究 2021
 [50] 基于深度神经网络的室内人体姿态检测与异常行为判断研究 2022
 [51] An Approach to Real-Time Fall Detection based on OpenPose and LSTM 2022
 [52] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52
 [53] 安防监控下人体异常行为检测算法研究 2022 53
 [54] Fall detection based on shape deformation 54
+[55]
