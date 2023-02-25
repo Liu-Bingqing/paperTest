@@ -1,4 +1,5 @@
 # 参考文献 Reference
+60~70个
 ## 第一章 绪论
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
 [2] 陈瑜，姜小鹰，杨美丽，等 . 养老机构老年人跌倒效能状况及其影 响 因 素 分 析［J］. 中 国 实 用 护 理 ，2016，32（6）：412-415.（CHEN Y，JIANG X Y，YANG M L，et al. lnvestigation on the fall efficacy of elderly people in nursing homes and its influencing factors［J］. Chinese Journal of Practical Nursing， 2016， 32（6）412-425.）
@@ -57,4 +58,6 @@
 [52] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52
 [53] 安防监控下人体异常行为检测算法研究 2022 53
 [54] Fall detection based on shape deformation 54
-[55]
+[55] Attention Is All You Need 2017
+[56] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022
+[57] 视觉Transformer与多特征融合的脑卒中检测算法 - 2022
