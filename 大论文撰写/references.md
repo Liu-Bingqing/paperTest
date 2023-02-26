@@ -61,3 +61,9 @@
 [55] Attention Is All You Need 2017
 [56] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022
 [57] 视觉Transformer与多特征融合的脑卒中检测算法 - 2022
+[58] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022
+[59] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
+[60] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735.
+[61] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574.
+[62] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
+补充：Bi-GRU:Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification” [Zhou et al.,2016]
