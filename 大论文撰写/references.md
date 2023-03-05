@@ -65,5 +65,8 @@
 [59] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 [60] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735.
 [61] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574.
-[62] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
+[62] 基于Attention Bi-LSTM网络的跌倒行为识别 2021
+[63] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
 补充：Bi-GRU:Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification” [Zhou et al.,2016]
+[64] 基于多算法融合的跌倒行为识别 2022
+[65] Fall Detection and Motion Analysis Using Visual Approaches 2022
