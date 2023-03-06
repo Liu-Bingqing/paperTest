@@ -2,10 +2,10 @@
 60~70个
 ## 第一章 绪论
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
-[2] 陈瑜，姜小鹰，杨美丽，等 . 养老机构老年人跌倒效能状况及其影 响 因 素 分 析［J］. 中 国 实 用 护 理 ，2016，32（6）：412-415.（CHEN Y，JIANG X Y，YANG M L，et al. lnvestigation on the fall efficacy of elderly people in nursing homes and its influencing factors［J］. Chinese Journal of Practical Nursing， 2016， 32（6）412-425.）
+[2] 颜文,张雪梅,陈茜.养老机构老年人跌倒效能及其影响因素研究[J].中国全科医学,2019,22(19):2356-2360.
 [3] PIERLEONI P，BELLI A，PALMA L，et al. A high reliability wearable device for elderly fall detection［J］. IEEE Sensors Journal，2015，15（8）：4544-4553.
 [4] 智能视频监控设备安全风险分析及对策 2019 4
-[5] Privacy-Preserving Efficient Fire DetectionSystem for Indoor Surveillance 2022 5
+[5] Privacy-Preserving Efficient Fire Detection System for Indoor Surveillance 2022 5
 [6] Combining skeleton and accelerometer data for human fine-grained activity recognition and abnormal behaviour detection with deep temporal convolutional networks 2021 6
 [7] Fall Detection and Activity Recognition using Hybrid Convolution Neural Network and Extreme Gradient Boosting classifier 2022 7
 [8] Smartphone Motion Sensor-Based Complex Human Activity Identification Using Deep Stacked Autoencoder Algorithm for Enhanced Smart Healthcare System 2020 8
