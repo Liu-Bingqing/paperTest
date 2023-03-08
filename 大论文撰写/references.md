@@ -4,20 +4,27 @@
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
 [2] 颜文,张雪梅,陈茜.养老机构老年人跌倒效能及其影响因素研究[J].中国全科医学,2019,22(19):2356-2360.
 [3] PIERLEONI P，BELLI A，PALMA L，et al. A high reliability wearable device for elderly fall detection［J］. IEEE Sensors Journal，2015，15（8）：4544-4553.
-[4] 智能视频监控设备安全风险分析及对策 2019 4
-[5] Privacy-Preserving Efficient Fire Detection System for Indoor Surveillance 2022 5
-[6] Combining skeleton and accelerometer data for human fine-grained activity recognition and abnormal behaviour detection with deep temporal convolutional networks 2021 6
-[7] Fall Detection and Activity Recognition using Hybrid Convolution Neural Network and Extreme Gradient Boosting classifier 2022 7
-[8] Smartphone Motion Sensor-Based Complex Human Activity Identification Using Deep Stacked Autoencoder Algorithm for Enhanced Smart Healthcare System 2020 8
-[9] A Heterogeneous Ensemble Learning-Based Acoustic Fall Detection Method for Elderly People in Indoor Environment 2020 9
-[10] Distributed Radar-based Human Activity Recognition using Vision Transformer and CNNs 2021 10
-[11] A Device-free Human Fall Detection System Based on GMM-HMM Using WiFi Signals 2021  11
-[12] 室内环境下老年人异常行为检测 2022 12
-[13] Fall detection based on shape deformation 2020 13
-[14] Temporal action detection based on two-stream You Only Look Once network for elderly care service robot 2021 14
-[15] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021 15
+[4] 智能视频监控设备安全风险分析及对策 2019 4 删除
+[5] Privacy-Preserving Efficient Fire Detection System for Indoor Surveillance 2022 5 4
+[6] Combining skeleton and accelerometer data for human fine-grained activity recognition and abnormal behaviour detection with deep temporal convolutional networks 2021 6 5
+[7] Fall Detection and Activity Recognition using Hybrid Convolution Neural Network and Extreme Gradient Boosting classifier 2022 7 6
+[8] Smartphone Motion Sensor-Based Complex Human Activity Identification Using Deep Stacked Autoencoder Algorithm for Enhanced Smart Healthcare System 2020 8 7
+[9] A Heterogeneous Ensemble Learning-Based Acoustic Fall Detection Method for Elderly People in Indoor Environment 2020 9 8
+[10] Distributed Radar-based Human Activity Recognition using Vision Transformer and CNNs 2021 10 9
+[11] A Device-free Human Fall Detection System Based on GMM-HMM Using WiFi Signals 2021  11 10
+[12] 室内环境下老年人异常行为检测 2022 12 11 
+[46 - 13] 基于 AlphaPose优化模型的老人跌倒行为检测算法 2022 46 - 13 12
+[48 - 14] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020 48-14 13
+[13 - 15] Fall detection based on shape deformation 2020 13-15 14
+[14 - 16] Ke W, Xuejing L, Yang J, et al. Temporal action detection based on two-stream You Only Look Once network for elderly care service robot[J]. International Journal of Advanced Robotic Systems, 2021(18) 14-16 15
+[64 - 17] 基于多算法融合的跌倒行为识别 2022 64-17 16
+[62 - 18] 基于Attention Bi-LSTM网络的跌倒行为识别 2021 62-18 17
+[65 - 18] Fall Detection and Motion Analysis Using Visual Approaches 2022 18
+[17 - 19] Towards a Template Matching Approach for Human Fall Detection 2021 19
+[15 - 20] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021 15 20
+
+
 [16] 基于AlphaPose优化模型的老人跌倒行为检测算法 2022 16 
-[17] Towards a Template Matching Approach for Human Fall Detection 2021 17
 ## 第二章 理论基础
 [18] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18
 [19] Research on Video-Based Human Action Behavior Recognition Algorithms 2020 19
@@ -65,8 +72,8 @@
 [59] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 [60] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735.
 [61] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574.
-[62] 基于Attention Bi-LSTM网络的跌倒行为识别 2021
+[62] 基于Attention Bi-LSTM网络的跌倒行为识别 2021 62-17
 [63] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
 补充：Bi-GRU:Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification” [Zhou et al.,2016]
-[64] 基于多算法融合的跌倒行为识别 2022
+[64] 基于多算法融合的跌倒行为识别 2022 64-16
 [65] Fall Detection and Motion Analysis Using Visual Approaches 2022
