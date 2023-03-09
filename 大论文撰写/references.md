@@ -85,32 +85,34 @@
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
 [2] 颜文,张雪梅,陈茜.养老机构老年人跌倒效能及其影响因素研究[J].中国全科医学,2019,22(19):2356-2360.
 [3] PIERLEONI P，BELLI A，PALMA L，et al. A high reliability wearable device for elderly fall detection［J］. IEEE Sensors Journal，2015，15（8）：4544-4553.
-[4] Privacy-Preserving Efficient Fire Detection System for Indoor Surveillance 2022 5 4
+[4] 徐克俊. 智能家庭监控系统的设计与实现[D].电子科技大学,2019.
+[5] 申栩林,李超波,李洪均.人群密集度下GAN的视频异常行为检测进展[J].计算机工程与应用,2022,58(07):21-30.
+[6] Privacy-Preserving Efficient Fire Detection System for Indoor Surveillance 2022 5
 #### 1.2 国内外研究现状
 ##### 1.2.1 传感器
-[5] Combining skeleton and accelerometer data for human fine-grained activity recognition and abnormal behaviour detection with deep temporal convolutional networks 2021 6 5 - Cuong
-[6] Fall Detection and Activity Recognition using Hybrid Convolution Neural Network and Extreme Gradient Boosting classifier 2022 7 6 - Kumar
-[7] Smartphone Motion Sensor-Based Complex Human Activity Identification Using Deep Stacked Autoencoder Algorithm for Enhanced Smart Healthcare System 2020 8 7 - Uzomg
-[8] A Heterogeneous Ensemble Learning-Based Acoustic Fall Detection Method for Elderly People in Indoor Environment 2020 9 8 - Li
-[9] Distributed Radar-based Human Activity Recognition using Vision Transformer and CNNs 2021 10 9 - Zhao
+[7] Combining skeleton and accelerometer data for human fine-grained activity recognition and abnormal behaviour detection with deep temporal convolutional networks 2021 6 5 - Cuong 7
+[8] Fall Detection and Activity Recognition using Hybrid Convolution Neural Network and Extreme Gradient Boosting classifier 2022 8 - Kumar
+[9] Smartphone Motion Sensor-Based Complex Human Activity Identification Using Deep Stacked Autoencoder Algorithm for Enhanced Smart Healthcare System 2020 9 - Uzomg
+[10] A Heterogeneous Ensemble Learning-Based Acoustic Fall Detection Method for Elderly People in Indoor Environment 2020 10 - Li
+[11] Distributed Radar-based Human Activity Recognition using Vision Transformer and CNNs 2021 10 9 - Zhao 11
 ##### 1.2.2 物联网
-[10] A Device-free Human Fall Detection System Based on GMM-HMM Using WiFi Signals 2021  11 10 - Cheng
-[11] 室内环境下老年人异常行为检测 2022 12 11 - 王宇
+[12] A Device-free Human Fall Detection System Based on GMM-HMM Using WiFi Signals 2021  11 10 - Cheng
+[13] 室内环境下老年人异常行为检测 2022 12 11 - 王宇
 ##### l.2.3 计算机视觉
-[12] 基于 AlphaPose优化模型的老人跌倒行为检测算法 2022 46 - 13 12 - 马敬奇 - **Pose-trt**
-[13] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020 48-14 13 - Han - **Pose+Classifers**
-[14] Fall detection based on shape deformation 2020 13-15 14 - Merriuche
-[15] Ke W, Xuejing L, Yang J, et al. Temporal action detection based on two-stream You Only Look Once network for elderly care service robot[J]. International Journal of Advanced Robotic Systems, 2021(18) 14-16 15 - Ke - **Yolo+Pose算法**
-[16] 基于多算法融合的跌倒行为识别 2022 64-17 16 - 陈淑红 - **Pose+ST-GCN**
-[17] 基于Attention Bi-LSTM网络的跌倒行为识别 2021 62-18 17 - 陈勇 - **Attention+Bi-LSTM**
-[18] Fall Detection and Motion Analysis Using Visual Approaches 2022 18 - Xin - **CNN+GRU**
-[19] Towards a Template Matching Approach for Human Fall Detection 2021 19 - Chaudhari - **Fall Module**
-[20] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021 15 20 - 谭容
+[14] 基于 AlphaPose优化模型的老人跌倒行为检测算法 2022 46 - 13 12 - 马敬奇 - **Pose-trt** 
+[15] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020 48-14 13 - Han - **Pose+Classifers** 
+[16] Fall detection based on shape deformation 2020 13-15 14 - Merriuche
+[17] Ke W, Xuejing L, Yang J, et al. Temporal action detection based on two-stream You Only Look Once network for elderly care service robot[J]. International Journal of Advanced Robotic Systems, 2021(18) 14-16 15 - Ke - **Yolo+Pose算法** 
+[18] 基于多算法融合的跌倒行为识别 2022 64-17 16 - 陈淑红 - **Pose+ST-GCN** 
+[19] 基于Attention Bi-LSTM网络的跌倒行为识别 2021 62-18 17 - 陈勇 - **Attention+Bi-LSTM** 
+[20] Fall Detection and Motion Analysis Using Visual Approaches 2022 18 - Xin - **CNN+GRU** 
+[21] Towards a Template Matching Approach for Human Fall Detection 2021 19 - Chaudhari - **Fall Module** 
+[22] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021 15 20 - 谭容
 ### 2 相关技术和场景定义
 #### 2.1 视频动态目标提取相关技术
 [21] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. 32 32-21
 [22] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87. 33 33-22
-[23] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062. 34-23 - **三帧差法**
+[23] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062. 34-23 - **三帧差法** 24
 [24] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. 35-24
 [25] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106. 36-25
 [26] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016. 37-26
@@ -128,13 +130,13 @@
 [36] 室内监控环境下的跌倒行为检测算法研究 2021 21-36
 [37] Multiview 3D Markerless Human Pose Estimation from OpenPose Skeletons 2020 22-37
 #### 2.4 实验数据设计
-[38] Kepski M, Kwolek B (2015) Embedded system for fall detection using body-worn accelerometer and depth sensor. In: 2015 IEEE 8th International conference on intelligent data acquisition and advanced computing systems: technology and applications (IDAACS), vol 2, pp 755–759. IEEE 23-38 - **URFD数据集**
-[39] UCF101 A Dataset of 101 Human Actions 24-39 - **UCF101数据集**
-[40] Actions as Space-Time Shapes - weizmann dataset cite01 25-40 - **Weizmann数据集**
-[41] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集**
-[42] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集**
+[38] Kepski M, Kwolek B (2015) Embedded system for fall detection using body-worn accelerometer and depth sensor. In: 2015 IEEE 8th International conference on intelligent data acquisition and advanced computing systems: technology and applications (IDAACS), vol 2, pp 755–759. IEEE 23-38 - **URFD数据集** 39
+[39] UCF101 A Dataset of 101 Human Actions 24-39 - **UCF101数据集** 40
+[40] Actions as Space-Time Shapes - weizmann dataset cite01 25-40 - **Weizmann数据集** 41
+[41] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集** 42
+[42] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 43
 #### 2.5 算法评估指标
-[43] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标**
+[43] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 44
 ### 3 HFID
 [44] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44
 [45] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027. 30-45
@@ -142,8 +144,8 @@
 [47] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
 [48] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 41-48
 [49] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.   42-49
-[50] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER**
-[51] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN**
+[50] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER** 51
+[51] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 52
 ### 4 Transformer-EnGRU
 [52] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18-52
 [53] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52-53
