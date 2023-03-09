@@ -110,31 +110,32 @@
 [22] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021 15 20 - 谭容
 ### 2 相关技术和场景定义
 #### 2.1 视频动态目标提取相关技术
-[21] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. 32 32-21
-[22] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87. 33 33-22
-[23] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062. 34-23 - **三帧差法** 24
-[24] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. 35-24
-[25] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106. 36-25
-[26] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016. 37-26
-[27] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664. 38-27
-[28] 基于背景减除和特征提取的跌倒识别方法 2020 39-28
-[29] 基于改进背景减法的视频图像运动目标检测 40-29
+[23] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. 32 32-21
+[24] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87. 33 33-22
+[25] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062. 34-23 - **三帧差法** 25
+[26] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. 35-24
+[27] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106. 36-25
+[28] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016. 37-26
+[29] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664. 38-27
+[30] 基于背景减除和特征提取的跌倒识别方法 2020 39-28
+[31] 基于改进背景减法的视频图像运动目标检测 40-29
 #### 2.2 视频时序信息处理相关技术
-[30] **增加RNN参考文献**
-[31] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735. 60-31
-[32] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574. 61-32
-[33] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation 63-33
+[32] Yamada Tatsuro,Murata Shingo,Arie Hiroaki,Ogata Tetsuya. Representation Learning of Logic Words by an RNN: From Word Sequences to Robot Actions.[J]. Frontiers in 
+neurorobotics,2017,11 - **增加RNN参考文献**
+[33] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735. 60-31
+[34] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574. 61-32
+[35] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation 63-33
 #### 2.3 场景定义
-[34] Research on Video-Based Human Action Behavior Recognition Algorithms 2020 19-43
-[35] 基于复杂场景的跌倒行为检测研究 2020 20-35
-[36] 室内监控环境下的跌倒行为检测算法研究 2021 21-36
-[37] Multiview 3D Markerless Human Pose Estimation from OpenPose Skeletons 2020 22-37
+[36] Research on Video-Based Human Action Behavior Recognition Algorithms 2020 19-43
+[37] 基于复杂场景的跌倒行为检测研究 2020 20-35
+[38] 室内监控环境下的跌倒行为检测算法研究 2021 21-36
+[39] Multiview 3D Markerless Human Pose Estimation from OpenPose Skeletons 2020 22-37
 #### 2.4 实验数据设计
-[38] Kepski M, Kwolek B (2015) Embedded system for fall detection using body-worn accelerometer and depth sensor. In: 2015 IEEE 8th International conference on intelligent data acquisition and advanced computing systems: technology and applications (IDAACS), vol 2, pp 755–759. IEEE 23-38 - **URFD数据集** 39
-[39] UCF101 A Dataset of 101 Human Actions 24-39 - **UCF101数据集** 40
-[40] Actions as Space-Time Shapes - weizmann dataset cite01 25-40 - **Weizmann数据集** 41
-[41] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集** 42
-[42] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 43
+[40] Kepski M, Kwolek B (2015) Embedded system for fall detection using body-worn accelerometer and depth sensor. In: 2015 IEEE 8th International conference on intelligent data acquisition and advanced computing systems: technology and applications (IDAACS), vol 2, pp 755–759. IEEE 23-38 - **URFD数据集** 39
+[41] UCF101 A Dataset of 101 Human Actions 24-39 - **UCF101数据集** 40
+[42] Actions as Space-Time Shapes - weizmann dataset cite01 25-40 - **Weizmann数据集** 41
+[43] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集** 42
+[44] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 43
 #### 2.5 算法评估指标
 [43] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 44
 ### 3 HFID
