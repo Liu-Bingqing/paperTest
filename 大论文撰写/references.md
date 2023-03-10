@@ -137,16 +137,18 @@ neurorobotics,2017,11 - **增加RNN参考文献**
 [43] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集** 42
 [44] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 43
 #### 2.5 算法评估指标
-[43] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 44
+[45] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 44
 ### 3 HFID
-[44] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44
-[45] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027. 30-45
-[46] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442. 31-46
-[47] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
-[48] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 41-48
-[49] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.   42-49
-[50] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER** 51
-[51] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 52
+[46] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
+[47] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027. 30-45
+[48] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442. 31-46
+[49] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
+[50] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
+[51] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 41-48
+[52] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.   42-49
+[53] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER** 51
+[54] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 52
+
 ### 4 Transformer-EnGRU
 [52] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18-52
 [53] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52-53
@@ -157,3 +159,6 @@ neurorobotics,2017,11 - **增加RNN参考文献**
 [58] 视觉Transformer与多特征融合的脑卒中检测算法 - 2022 58-58
 [59] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022 - 58-59
 [60] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
+
+
+[44] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44 - 放到第四章
