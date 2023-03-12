@@ -148,13 +148,13 @@ neurorobotics,2017,11 - **增加RNN参考文献**
 [52] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.   42-49
 [53] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER** 51
 [54] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 52
-
 ### 4 Transformer-EnGRU
-[52] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18-52
-[53] Fall Detection in Elevator Cages Based on XGBoost and LSTM 2021 52-53
-[54] 安防监控下人体异常行为检测算法研究 2022 53-54
-[55] Fall detection based on shape deformation 54-55
-[56] Attention Is All You Need 2017 55-56
+[55] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18-52
+[56] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
+[57] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心
+[58] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
+[59] Attention Is All You Need 2017 55-56
+
 [57] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022 56-57
 [58] 视觉Transformer与多特征融合的脑卒中检测算法 - 2022 58-58
 [59] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022 - 58-59
