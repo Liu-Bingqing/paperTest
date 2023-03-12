@@ -156,9 +156,6 @@ neurorobotics,2017,11 - **增加RNN参考文献**
 [59] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022 - 58-59
 [60] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022 56-57 - Transformer主流介绍
 [61] Attention Is All You Need 2017 55-56
+[62] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44
+[63] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 
-[59] 
-[60] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
-
-
-[44] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44 - 放到第四章
