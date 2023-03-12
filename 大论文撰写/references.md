@@ -153,11 +153,11 @@ neurorobotics,2017,11 - **增加RNN参考文献**
 [56] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
 [57] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心
 [58] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
-[59] Attention Is All You Need 2017 55-56
-
-[57] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022 56-57
-[58] 视觉Transformer与多特征融合的脑卒中检测算法 - 2022 58-58
 [59] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022 - 58-59
+[60] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022 56-57 - Transformer主流介绍
+[61] Attention Is All You Need 2017 55-56
+
+[59] 
 [60] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 
 
