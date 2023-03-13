@@ -144,18 +144,19 @@ neurorobotics,2017,11 - **增加RNN参考文献**
 [48] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442. 31-46
 [49] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
 [50] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
-[51] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 41-48
-[52] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.   42-49
-[53] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER** 51
-[54] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 52
+[51] ARNAL J, SUCAR L. Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243.10.3390/app10010243.
+[52] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 
+[53] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.   42-49
+[54] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. 43-50 - **LOBSTER** 51
+[55] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 52
 ### 4 Transformer-EnGRU
-[55] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18-52
-[56] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
-[57] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心
-[58] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
-[59] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022 - 58-59
-[60] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022 56-57 - Transformer主流介绍
-[61] Attention Is All You Need 2017 55-56
-[62] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44
-[63] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
+[56] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021  18-52
+[57] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
+[58] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心
+[59] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
+[60] 不规则视频数据集下的深度时序特征建模研究_李登山 - 2022 - 58-59
+[61] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance - 2022 56-57 - Transformer主流介绍
+[62] Attention Is All You Need 2017 55-56
+[63] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag. 29-44
+[64] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 
