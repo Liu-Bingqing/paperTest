@@ -158,4 +158,4 @@
 [62] Attention Is All You Need 2017
 [63] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
 [64] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
-
+[65] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
