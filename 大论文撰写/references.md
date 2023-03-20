@@ -79,8 +79,8 @@
 [64] 基于多算法融合的跌倒行为识别 2022 64-16
 [65] Fall Detection and Motion Analysis Using Visual Approaches 2022
 
-## v0.0.0.2
-### 1 绪论
+## v0.0.0.2-v0.0.0.4
+### 1 绪论 [1]-[22]
 #### 1.1 研究背景及意义
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
 [2] 颜文,张雪梅,陈茜.养老机构老年人跌倒效能及其影响因素研究[J].中国全科医学,2019,22(19):2356-2360.
@@ -159,3 +159,4 @@
 [63] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
 [64] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 [65] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
+[66] 尹强. 基于本体的MVC架构模式识别及重构技术[D].东南大学,2019.DOI:10.27014/d.cnki.gdnau.2019.003179. - MVC模式
