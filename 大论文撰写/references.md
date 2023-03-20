@@ -79,7 +79,7 @@
 [64] 基于多算法融合的跌倒行为识别 2022 64-16
 [65] Fall Detection and Motion Analysis Using Visual Approaches 2022
 
-## v0.0.0.2-v0.0.0.4
+## v0.0.0.2-v0.0.0.5
 ### 1 绪论 [1]-[22]
 #### 1.1 研究背景及意义
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
@@ -99,11 +99,11 @@
 [12] A Device-free Human Fall Detection System Based on GMM-HMM Using WiFi Signals 2021 - Cheng
 [13] 室内环境下老年人异常行为检测 2022 - 王宇
 ##### l.2.3 计算机视觉
-[14] 基于 AlphaPose优化模型的老人跌倒行为检测算法 2022 - 马敬奇 - **Pose-trt** 14
+[14] 基于AlphaPose优化模型的老人跌倒行为检测算法 2022 - 马敬奇 - **Pose-trt** 14
 [15] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020  - Han - **Pose+Classifers** 15
 [16] Fall detection based on shape deformation 2020  - Merriuche
 [17] Ke W, Xuejing L, Yang J, et al. Temporal action detection based on two-stream You Only Look Once network for elderly care service robot[J]. International Journal of Advanced Robotic Systems, 2021(18)  - Ke - **Yolo+Pose算法** 17
-[18] 基于多算法融合的跌倒行为识别 2022  - 陈淑红 - **Pose+ST-GCN** 18
+[18] 基于多算法融合的跌倒行为识别 2022  - 程淑红 - **Pose+ST-GCN** 18
 [19] 基于Attention Bi-LSTM网络的跌倒行为识别 2021  - 陈勇 - **Attention+Bi-LSTM** 19
 [20] Fall Detection and Motion Analysis Using Visual Approaches 2022  - Xin - **CNN+GRU** 20
 [21] Towards a Template Matching Approach for Human Fall Detection 2021  - Chaudhari - **Fall Module** 21
