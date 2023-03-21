@@ -108,7 +108,7 @@
 [20] Fall Detection and Motion Analysis Using Visual Approaches 2022  - Xin - **CNN+GRU** 20
 [21] Towards a Template Matching Approach for Human Fall Detection 2021  - Chaudhari - **Fall Module** 21
 [22] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021  - 谭容
-### 2 相关技术和场景定义
+### 2 相关技术和场景定义 [23] - [45]
 #### 2.1 视频动态目标提取相关技术
 [23] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. 
 [24] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87. 
@@ -137,7 +137,7 @@
 [44] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 44
 #### 2.5 算法评估指标
 [45] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 45
-### 3 HFID
+### 3 HFID [46] - [55]
 [46] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
 [47] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027.
 [48] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442.
@@ -148,7 +148,7 @@
 [53] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.
 [54] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. - **LOBSTER** 54
 [55] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 55
-### 4 Transformer-EnGRU
+### 4 Transformer-EnGRU [56] - [65]
 [56] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021
 [57] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
 [58] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心
@@ -159,4 +159,5 @@
 [63] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
 [64] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
 [65] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
+###  5 可视化开发
 [66] 尹强. 基于本体的MVC架构模式识别及重构技术[D].东南大学,2019.DOI:10.27014/d.cnki.gdnau.2019.003179. - MVC模式
