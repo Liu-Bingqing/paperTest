@@ -110,15 +110,15 @@
 [22] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021  - 谭容
 ### 2 相关技术和场景定义 [23] - [45]
 #### 2.1 视频动态目标提取相关技术
-[23] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. 
-[24] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87. 
+[23] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. - **帧差法概念**
+[24] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87.  - **帧差法概念**
 [25] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062.  - **三帧差法** 25
-[26] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. 
-[27] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106.
-[28] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016.
-[29] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664.
-[30] 基于背景减除和特征提取的跌倒识别方法 2020 
-[31] 基于改进背景减法的视频图像运动目标检测 
+[26] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. - **连续五帧差法**
+[27] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106. - **光流法概念**
+[28] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016. -**光流法概念**
+[29] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664. - **光流法概念**
+[30] 基于背景减除和特征提取的跌倒识别方法 2020 - **背景减法概念**
+[31] 基于改进背景减法的视频图像运动目标检测  - **改进背景减法**
 #### 2.2 视频时序信息处理相关技术
 [32] Yamada Tatsuro,Murata Shingo,Arie Hiroaki,Ogata Tetsuya. Representation Learning of Logic Words by an RNN: From Word Sequences to Robot Actions.[J]. Frontiers in neurorobotics,2017,11 - **增加RNN参考文献** 
 [33] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735.
