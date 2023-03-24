@@ -151,13 +151,13 @@
 ### 4 Transformer-EnGRU [56] - [65]
 [56] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021
 [57] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
-[58] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心
+[58] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心 - **换论文**  中文
 [59] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
-[60] 不规则视频数据集下的深度时序特征建模研究_李登山 2022
+[60] 赵琛琦,王华虎,赵涓涓,冀伦文,王麒达,李慧芝,赵紫娟.视觉Transformer与多特征融合的脑卒中检测算法[J].中国图象图形学报,2022,27(03):923-934.
 [61] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance 2022 - Transformer主流介绍
 [62] Attention Is All You Need 2017
 [63] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
-[64] LEE D W，JUN K，NAHEEM K，et al.Deep neural network based double-check method for fall detection using IMU-L sensor and RGB camera data[J].IEEE Access，2021：48064-48079. - RNN
+[64] 不规则视频数据集下的深度时序特征建模研究 - 李登山
 [65] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
 ###  5 可视化开发
 [66] 尹强. 基于本体的MVC架构模式识别及重构技术[D].东南大学,2019.DOI:10.27014/d.cnki.gdnau.2019.003179. - MVC模式
