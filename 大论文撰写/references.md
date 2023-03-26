@@ -120,6 +120,7 @@
 ##### 1.2.2 物联网
 [12] A Device-free Human Fall Detection System Based on GMM-HMM Using WiFi Signals 2021 - Cheng
 [13] 室内环境下老年人异常行为检测 2022 - 王宇
+[14] Wi-Fi Signal Analysis for Heartbeat and Metal Detection: A Comparative Study of Reliable Contactless Systems
 ##### l.2.3 计算机视觉
 [14] 基于AlphaPose优化模型的老人跌倒行为检测算法 2022 - 马敬奇 - **Pose-trt** 14
 [15] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020  - Han - **Pose+Classifers** 15
