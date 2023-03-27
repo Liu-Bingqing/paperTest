@@ -102,7 +102,7 @@
 
 **目前版本**
 ## v0.0.0.2-v0.0.0.5 V1
-### 1 绪论 [1]-[22]
+### 1 绪论 [1]-[23]
 #### 1.1 研究背景及意义
 [1]黄明安，陈钰 . 中国人口老龄化的现状及建设［J］. 经济研究导刊，2018（10）：60-64，72.（HUANG M A，CHEN Y. The statusquo and advice of China’s ageing［J］. Economic Research Guide，2018（10）：60-64，72.）
 [2] 颜文,张雪梅,陈茜.养老机构老年人跌倒效能及其影响因素研究[J].中国全科医学,2019,22(19):2356-2360.
@@ -122,44 +122,44 @@
 [13] 室内环境下老年人异常行为检测 2022 - 王宇
 [14] Wi-Fi Signal Analysis for Heartbeat and Metal Detection: A Comparative Study of Reliable Contactless Systems
 ##### l.2.3 计算机视觉
-[14] 基于AlphaPose优化模型的老人跌倒行为检测算法 2022 - 马敬奇 - **Pose-trt** 14
-[15] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020  - Han - **Pose+Classifers** 15
-[16] Fall detection based on shape deformation 2020  - Merriuche
-[17] Ke W, Xuejing L, Yang J, et al. Temporal action detection based on two-stream You Only Look Once network for elderly care service robot[J]. International Journal of Advanced Robotic Systems, 2021(18)  - Ke - **Yolo+Pose算法** 17
-[18] 基于多算法融合的跌倒行为识别 2022  - 程淑红 - **Pose+ST-GCN** 18
-[19] 基于Attention Bi-LSTM网络的跌倒行为识别 2021  - 陈勇 - **Attention+Bi-LSTM** 19
-[20] Fall Detection and Motion Analysis Using Visual Approaches 2022  - Xin - **CNN+GRU** 20
-[21] Towards a Template Matching Approach for Human Fall Detection 2021  - Chaudhari - **Fall Module** 21
-[22] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021  - 谭容
-### 2 相关技术和场景定义 [23] - [45]
+[15] 基于AlphaPose优化模型的老人跌倒行为检测算法 2022 - 马敬奇 - **Pose-trt** 15
+[16] A Two-Stage Fall Recognition Algorithm Based on Human Posture Features 2020  - Han - **Pose+Classifers** 16
+[17] Fall detection based on shape deformation 2020  - Merriuche
+[18] Ke W, Xuejing L, Yang J, et al. Temporal action detection based on two-stream You Only Look Once network for elderly care service robot[J]. International Journal of Advanced Robotic Systems, 2021(18)  - Ke - **Yolo+Pose算法** 18
+[19] 基于多算法融合的跌倒行为识别 2022  - 程淑红 - **Pose+ST-GCN** 19
+[20] 基于Attention Bi-LSTM网络的跌倒行为识别 2021  - 陈勇 - **Attention+Bi-LSTM** 20
+[21] Fall Detection and Motion Analysis Using Visual Approaches 2022  - Xin - **CNN+GRU** 21
+[22] Towards a Template Matching Approach for Human Fall Detection 2021  - Chaudhari - **Fall Module** 22
+[23] 视觉隐私保护下室内监控视频中的跌倒行为检测研究 2021  - 谭容
+### 2 相关技术和场景定义 [24] - [46]
 #### 2.1 视频动态目标提取相关技术
-[23] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. - **帧差法概念**
-[24] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87.  - **帧差法概念**
-[25] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062.  - **三帧差法** 25
-[26] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. - **连续五帧差法**
-[27] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106. - **光流法概念**
-[28] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016. -**光流法概念**
-[29] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664. - **光流法概念**
-[30] 基于背景减除和特征提取的跌倒识别方法 2020 - **背景减法概念**
-[31] 基于改进背景减法的视频图像运动目标检测  - **改进背景减法**
+[24] A method for real-time detection of human fall from video M. Kreković et al., "A method for real-time detection of human fall from video," 2012 Proceedings of the 35th International Convention MIPRO, Opatija, Croatia, 2012, pp. 1709-1712. - **帧差法概念**
+[25] 徐君妍,袁址赟,崔宗勇等.基于帧间差分的ViBe运动目标检测[J].科学技术与工程,2017,17(27):82-87.  - **帧差法概念**
+[26] 李秋林,何家峰. 基于三帧差法和交叉熵阈值法的车辆检测[J]. 计算机工程,2011,37(4):172-174. DOI:10.3969/j.issn.1000-3428.2011.04.062.  - **三帧差法** 26
+[27] 张彩珍,张云霞,陈永刚等.基于五帧差分和模板匹配的运动目标检测识别[J].激光与红外,2018,48(12):1554-1560. - **连续五帧差法**
+[28] 霍天枢,潘鸣宇.运动目标检测研究方法述论[J].信息通信,2017,No.176(08):104-106. - **光流法概念**
+[29] 宋克峰.基于机器视觉的运动目标检测技术研究[D].郑州:华北水利水电大学,2016. -**光流法概念**
+[30] Gibson J J . The perception of visual surfaces. By James J. Gibson, 1950[J]. Am J  Psychol, 1987, 100(3-4):646-664. - **光流法概念**
+[31] 基于背景减除和特征提取的跌倒识别方法 2020 - **背景减法概念**
+[32] 基于改进背景减法的视频图像运动目标检测  - **改进背景减法**
 #### 2.2 视频时序信息处理相关技术
-[32] Yamada Tatsuro,Murata Shingo,Arie Hiroaki,Ogata Tetsuya. Representation Learning of Logic Words by an RNN: From Word Sequences to Robot Actions.[J]. Frontiers in neurorobotics,2017,11 - **增加RNN参考文献** 
-[33] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735.
-[34] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574. 
-[35] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation 
+[33] Yamada Tatsuro,Murata Shingo,Arie Hiroaki,Ogata Tetsuya. Representation Learning of Logic Words by an RNN: From Word Sequences to Robot Actions.[J]. Frontiers in neurorobotics,2017,11
+[34] S. Hochreiter and J. Schmidhuber, "Long Short-Term Memory," in Neural Computation, vol. 9, no. 8, pp. 1735-1780, 15 Nov. 1997, doi: 10.1162/neco.1997.9.8.1735.
+[35] Bi-LSTM - TARAMASCO C，RODENAS T，MARTINEZ F，et al. A novel monitoring system for fall detection in older people[J].IEEE Access，2018：43563-43574. 
+[36] GRU - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation 
 #### 2.3 场景定义
-[36] Research on Video-Based Human Action Behavior Recognition Algorithms 2020 
-[37] 基于复杂场景的跌倒行为检测研究 2020 
-[38] 室内监控环境下的跌倒行为检测算法研究 2021 
-[39] Multiview 3D Markerless Human Pose Estimation from OpenPose Skeletons 2020 
+[37] Research on Video-Based Human Action Behavior Recognition Algorithms 2020 
+[38] 基于复杂场景的跌倒行为检测研究 2020 
+[39] 室内监控环境下的跌倒行为检测算法研究 2021 
+[40] Multiview 3D Markerless Human Pose Estimation from OpenPose Skeletons 2020 
 #### 2.4 实验数据设计
-[40] Kepski M, Kwolek B (2015) Embedded system for fall detection using body-worn accelerometer and depth sensor. In: 2015 IEEE 8th International conference on intelligent data acquisition and advanced computing systems: technology and applications (IDAACS), vol 2, pp 755–759. IEEE 23-38 - **URFD数据集** 40
-[41] UCF101 A Dataset of 101 Human Actions 24-39 - **UCF101数据集** 41
-[42] Actions as Space-Time Shapes - weizmann dataset cite01 25-40 - **Weizmann数据集** 42
-[43] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集** 43
-[44] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 44
+[41] Kepski M, Kwolek B (2015) Embedded system for fall detection using body-worn accelerometer and depth sensor. In: 2015 IEEE 8th International conference on intelligent data acquisition and advanced computing systems: technology and applications (IDAACS), vol 2, pp 755–759. IEEE 23-38 - **URFD数据集** 41
+[42] UCF101 A Dataset of 101 Human Actions 24-39 - **UCF101数据集** 42
+[43] Actions as Space-Time Shapes - weizmann dataset cite01 25-40 - **Weizmann数据集** 43
+[44] Recognizing_human_actions_a_local_SVM_approach 26-41 - **KTH数据集** 44
+[45] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 45
 #### 2.5 算法评估指标
-[45] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 45
+[46] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 45
 ### 3 HFID [46] - [55]
 [46] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
 [47] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027.
