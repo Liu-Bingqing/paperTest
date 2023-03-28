@@ -160,13 +160,13 @@
 [45] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 45
 #### 2.5 算法评估指标
 [46] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 45
-### 3 HFID [46] - [55]
-[46] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
-[47] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027.
-[48] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442.
-[49] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
-[50] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
-[51] ARNAL J, SUCAR L. Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243.10.3390/app10010243.
+### 3 HFID [47] - [55]
+[47] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
+[48] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027.
+[49] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442.
+[50] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
+[51] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
+[52] ARNAL J, SUCAR L. Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243.10.3390/app10010243.
 [52] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 
 [53] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.
 [54] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. - **LOBSTER** 54
