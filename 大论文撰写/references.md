@@ -160,21 +160,21 @@
 [45] E. Auvinet, C. Rougier, J.Meunier, A. St-Arnaud, J. Rousseau, "Multiple cameras fall dataset", Technical report 1350, DIRO - Université de Montréal, July 2010. 27-42 - **MCF数据集** 45
 #### 2.5 算法评估指标
 [46] Fall Detection Based on RetinaNet and MobileNet Convolutional Neural Networks-二分类CNN - 2020 28 - **评价指标** 45
-### 3 HFID [47] - [55]
+### 3 HFID [47] - [56]
 [47] GHATAK S, RUP S, DIDWANIA H, et al. GAN based efficient foreground extraction and HGWOSA based optimization for video synopsis generation[J]. Digital Signal Processing,2021,111,102988.
 [48] 动态背景下运动目标检测算法 朱磊,冯成涛,张继等.动态背景下运动目标检测算法[J].现代电子技术,2022,45(06):148-152.DOI:10.16652/j.issn.1004-373x.2022.06.027.
 [49] 刘洪江,王懋,刘丽华.基于深度学习的小目标检测综述[J].计算机工程与科学, 2021, 43(08):1429-1442.
 [50] SHENG M X, HOU W W, JIANG J C. Implementation of Accelerating Video Preprocessing based on ZYNQ Platform Resource Management[J]. Journal of Physics Conference Series,2020,1544(1):012112.
 [51] HAN P, HUANG T Q, WENG B, et al. Overcome the Brightness and Jitter Noises in Video Inter-Frame Tampering Detection[J]. Sensors,2021,21(12):3953.
 [52] ARNAL J, SUCAR L. Hybrid Filter Based on Fuzzy Techniques for Mixed Noise Reduction in Color Images[J]. Applied Sciences,2020,10(1):243.10.3390/app10010243.
-[52] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 
-[53] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.
-[54] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. - **LOBSTER** 54
-[55] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 55
-### 4 Transformer-EnGRU [56] - [65]
-[56] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021
-[57] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
-[58] Fall detection approach based on combined two‑channel body activity classification for innovative indoor environment - 质心 - **换论文**  中文
+[53] ZHENG L, YANG Y, TIAN Q. SIFT Meets CNN: A Decade Survey of Instance Retrieval[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2018,40(5):1224-1244. 
+[54] XING J W, YANG P, QINGGE L T. Automatic thresholding using a modified valley emphasis[J]. IET image processing,2020,14(3):536-544.
+[55] 陈树,丁保阔.动态背景下自适应LOBSTER算法的前景检测[J].中国图象图形学报,2017,22(02):161-169. - **LOBSTER** 55
+[56] CHANG C W, CHANG C Y, LIN Y Y. A hybrid CNN and LSTM-based deep learning model for abnormal behavior detection[J]. Multimedia Tools and Applications, 2022,81: 11825–11843. 44-51 - **3D-CNN** 56
+### 4 Transformer-EnGRU [57] - [66]
+[57] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021
+[58] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
+[58] 赵江平, 王垚. 基于图像识别技术的不安全行为识别[J]. 安全与环境工程, 2020, 27(01): 158-165. - 质心 - **换论文**  中文
 [59] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
 [60] 赵琛琦,王华虎,赵涓涓,冀伦文,王麒达,李慧芝,赵紫娟.视觉Transformer与多特征融合的脑卒中检测算法[J].中国图象图形学报,2022,27(03):923-934.
 [61] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance 2022 - Transformer主流介绍
@@ -183,4 +183,4 @@
 [64] 不规则视频数据集下的深度时序特征建模研究 - 李登山
 [65] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
 ###  5 可视化开发
-[66] 尹强. 基于本体的MVC架构模式识别及重构技术[D].东南大学,2019.DOI:10.27014/d.cnki.gdnau.2019.003179. - MVC模式
+[67] 尹强. 基于本体的MVC架构模式识别及重构技术[D].东南大学,2019.DOI:10.27014/d.cnki.gdnau.2019.003179. - MVC模式
