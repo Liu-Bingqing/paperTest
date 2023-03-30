@@ -174,13 +174,13 @@
 ### 4 Transformer-EnGRU [57] - [66]
 [57] Human Activity Classification Based on Angle Variance Analysis Utilizing the Poincare Plot 2021
 [58] Fall detection approach based on combined displacement of spatial features for intelligent indoor surveillance
-[58] 赵江平, 王垚. 基于图像识别技术的不安全行为识别[J]. 安全与环境工程, 2020, 27(01): 158-165. - 质心 - **换论文**  中文
-[59] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
-[60] 赵琛琦,王华虎,赵涓涓,冀伦文,王麒达,李慧芝,赵紫娟.视觉Transformer与多特征融合的脑卒中检测算法[J].中国图象图形学报,2022,27(03):923-934.
-[61] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance 2022 - Transformer主流介绍
-[62] Attention Is All You Need 2017
-[63] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
-[64] 不规则视频数据集下的深度时序特征建模研究 - 李登山
-[65] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
+[59] 赵江平, 王垚. 基于图像识别技术的不安全行为识别[J]. 安全与环境工程, 2020, 27(01): 158-165. - 质心 - **换论文**  中文
+[60] An Explainable Deep Learning Model for Vision-based Human Fall Detection System - CNN相关文献
+[61] 赵琛琦,王华虎,赵涓涓,冀伦文,王麒达,李慧芝,赵紫娟.视觉Transformer与多特征融合的脑卒中检测算法[J].中国图象图形学报,2022,27(03):923-934.
+[62] Exploring Human Pose Estimation and the Usage of Synthetic Data for Elderly Fall Detection in Real-World Surveillance 2022 - Transformer主流介绍
+[63] Attention Is All You Need 2017
+[64] Changjian, Fu. “Concepts and Framework for Video Structure Mining.” Computer Engineering (2007): n. pag.
+[65] 不规则视频数据集下的深度时序特征建模研究 - 李登山
+[66] Improving neural networks by preventing co-adaptation of feature detectors - Hinton
 ###  5 可视化开发
 [67] 尹强. 基于本体的MVC架构模式识别及重构技术[D].东南大学,2019.DOI:10.27014/d.cnki.gdnau.2019.003179. - MVC模式
